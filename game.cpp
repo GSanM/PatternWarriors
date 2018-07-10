@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//Testando git
+
 //CLASSES --------------------------------
 
 //Singleton used because is a singleplayer game, thus, just one user can be added.

@@ -1,0 +1,6 @@
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/PatternWarriorsCodes.exe.mdb
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/PatternWarriorsCodes.exe
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.exe
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.exe.mdb
+/home/rafael/GitHub/PatternWarriors/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/slowWrite.dll

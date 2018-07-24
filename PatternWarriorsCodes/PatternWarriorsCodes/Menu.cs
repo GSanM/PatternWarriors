@@ -1,6 +1,14 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.IO;
 using System.Text;
+
+static class Constants
+{
+	public const int TEXT_SPEED1 = 50;
+	public const int TEXT_SPEED2 = 100;
+	public const int TEXT_SPEED3 = 200;
+}
 
 namespace Menu
 {
@@ -33,15 +41,33 @@ namespace Menu
 	{
 		private int chosed;
         
+		protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            //capture up arrow key
+            if (keyData == Keys.Up)
+            {
+                MessageBox.Show("You pressed Up arrow key");
+                return true;
+            }
+            //capture down arrow key
+            if (keyData == Keys.Down)
+            {
+                MessageBox.Show("You pressed Down arrow key");
+                return true;
+            }
+        }
 
         public void ImprimeMenu()
 		{
-			Console.WriteLine( "[-----------------]" );
-            Console.WriteLine( "[--- Game Name ---]" );
-            Console.WriteLine( "[-----------------]" );
-            Console.WriteLine( "[---- > Start ----]" );
-			Console.WriteLine( "[-----------------]" );
+			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1 );
+			library.slowWrite( "|||| Pattern Warriors ||||", Constants.TEXT_SPEED2 );
+			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1 );
+			library.slowWrite( "|||||||| > Start  ||||||||", Constants.TEXT_SPEED2 );
+			library.slowWrite(" |||||||| > Load   ||||||||", Constants.TEXT_SPEED2);
+			library.slowWrite(" |||||||| > Quit   ||||||||", Constants.TEXT_SPEED2);
+			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1 );
 		}
+
         public static int Main()
 		{
 			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();

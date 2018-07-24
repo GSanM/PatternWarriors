@@ -24,14 +24,15 @@ namespace Library
         * @return void
         * 
         */
-		public static void slowWrite(string message, int delay)
+		public static void slowWrite(string message, int delay, bool endline)
 		{
 			foreach (char letter in message)
 			{
 				Console.Write(letter);
 				System.Threading.Thread.Sleep(delay);
 			}
-			Console.WriteLine("");
+			if (endline == true)
+				Console.WriteLine("");
 		}
 	}
 }

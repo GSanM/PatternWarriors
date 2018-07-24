@@ -1,9 +1,21 @@
 ﻿<Properties StartupConfiguration="{313B6470-98FB-4E9B-B045-B88D15D8A03E}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="PatternWarriorsCodes/Menu.cs">
     <Files>
-      <File FileName="PatternWarriorsCodes/Program.cs" Line="5" Column="2" />
-      <File FileName="PatternWarriorsCodes/Menu.cs" Line="58" Column="10" />
+      <File FileName="PatternWarriorsCodes/Menu.cs" Line="197" Column="33" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PatternWarriorsCodes" expanded="True">
+            <Node name="PatternWarriorsCodes" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Menu.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

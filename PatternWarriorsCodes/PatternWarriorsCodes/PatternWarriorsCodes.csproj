@@ -34,6 +34,9 @@
     <Reference Include="slowWrite">
       <HintPath>..\..\dll Files\slowWrite.dll</HintPath>
     </Reference>
+    <Reference Include="slowWrite">
+      <HintPath>..\..\dll Files\slowWrite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

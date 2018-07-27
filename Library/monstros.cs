@@ -156,12 +156,13 @@ namespace Library
         protected Random random = new Random();
 
 		protected string name;
+        protected string description;
+        protected int numeroDeIdentificacao;
         protected int level;
         protected int ATK;
         protected int DEF;
         protected int lifeSize;
         protected int actualLife;
-        protected string description;
         protected bool ATKMode;
         protected bool DEFMode;
         protected bool RUNMode;
@@ -210,6 +211,10 @@ namespace Library
         {
             return actualLife;
         }
+        public int getLifeSize()
+        {
+            return lifeSize;
+        }
         public int getATK()
         {
             return ATK;
@@ -225,6 +230,14 @@ namespace Library
         public string getDescription()
         {
             return description;
+        }
+        public void setID(int ID)
+        {
+            numeroDeIdentificacao = ID;
+        }
+        public int getID()
+        {
+            return numeroDeIdentificacao;
         }
         
         public void showStatus()
@@ -318,7 +331,7 @@ namespace Library
             arrValues[0, 0] = "Hero " + hero.getName();
             arrValues[1, 0] = "Life " + hero.getLife().ToString();               
             arrValues[2, 0] = "ATK " + hero.getATK().ToString();  
-            arrValues[3, 0] = "ATK " + hero.getDEF().ToString();                 
+            arrValues[3, 0] = "DEF " + hero.getDEF().ToString();                 
 
             ArrayPrinter.PrintToConsole(arrValues);
         }
@@ -329,7 +342,7 @@ namespace Library
 
             foreach (Monster item in EnemyList)
             {
-                arrValues[0, EnemyList.IndexOf(item)] = "Monster " + EnemyList.IndexOf(item).ToString();                
+                arrValues[0, EnemyList.IndexOf(item)] = "Monster " + item.getID().ToString();                
             }
 
             foreach (Monster item in EnemyList)
@@ -366,12 +379,24 @@ namespace Library
             Console.WriteLine("D to DEF");
             string option = Console.ReadLine();
             
-            if(option == "A")
+            
+            if ( (option == "A") || (option == "a") )
             {
                 hero.Attack();
-
-                Console.WriteLine("Select the monster to attack");
-                IndexMonster = Convert.ToInt32(Console.ReadLine());
+                
+                bool check = false;
+                while(check == false)
+                {
+                    Console.WriteLine("Select the monster to attack");
+                    IndexMonster = Convert.ToInt32(Console.ReadLine());
+                    foreach (Monster item in EnemyList)
+                    {
+                        if(item.getID() == IndexMonster)
+                        {
+                            check = true;
+                        }        
+                    }
+                }
             }
             else
             {
@@ -379,22 +404,7 @@ namespace Library
             }
         }
 
-        public virtual void roundEnemies(Monster Enemy)
-        {
-            int Mode = random.Next(0,3);
-            if (Mode == 0)
-            {
-                Enemy.Attack();
-            }
-            else if(Mode == 1)
-            {
-                Enemy.Defence();
-            }
-            else
-            {
-                Enemy.runAway();
-            }
-        }
+        public abstract void roundEnemies(Monster Enemy);
         
         public virtual void calculateDamage()
         {
@@ -407,9 +417,18 @@ namespace Library
 
         public virtual void calculateDamageHero()
         {
+            Monster aux = null;
+
             if(hero.getMode().Equals("ATK"))
             {
-                Monster aux = EnemyList[IndexMonster];
+
+                for(int i = 0; i < EnemyList.Count; i++)
+                {
+                    if(EnemyList[i].getID() == IndexMonster)
+                    {
+                        aux = EnemyList[i];
+                    }
+                }
 
                 Console.Write("Voce atacou seu inimigo " + aux.getName() + " com toda sua força, ");
 
@@ -453,11 +472,11 @@ namespace Library
             else if(Enemy.getMode().Equals("RUN"))
             {
                 Enemy.receiveDamage(Enemy.getLife());
-                Console.WriteLine("Monster " + EnemyList.IndexOf(Enemy) + " foge de voce");
+                Console.WriteLine("Monster " + Enemy.getID() + " foge de voce");
             }
             else if (Enemy.getMode().Equals("ATK") ) 
             {
-                Console.Write("Monster " + EnemyList.IndexOf(Enemy) + " lhe ameaça com um poderoso golpe, ");
+                Console.Write("Monster " + Enemy.getID() + " lhe ameaça com um poderoso golpe, ");
 
                 if(hero.getMode().Equals("DEF"))
                 {
@@ -483,7 +502,7 @@ namespace Library
             }
             else if(Enemy.getMode().Equals("DEF"))
             {
-                Console.WriteLine("Monster " + EnemyList.IndexOf(Enemy) + " mantem a guarda alta");
+                Console.WriteLine("Monster " + Enemy.getID() + " mantem a guarda alta");
             }
         }
 
@@ -506,15 +525,57 @@ namespace Library
         public override void createEnemies()
         {
             MonsterFactory oFactory = new MonsterFactory();
-            hero = oFactory.CreateMonster("Zombie", 3);
+            hero = oFactory.CreateMonster("GigantSpider", 3);
             Monster Enemy;
             int rand = random.Next(5,8);
 
             for (int i = 0; i < rand; i++)
             {
                 Enemy = oFactory.CreateMonster("GigantSpider", 1);
+                Enemy.setID(i);
                 EnemyList.Add(Enemy);            
                 System.Threading.Thread.Sleep(100);
+            }
+        }
+
+        public override void roundEnemies(Monster Enemy)
+        {
+            int Mode = random.Next(0,100);
+            int chanceATK = 33;
+            int chanceDEF = 33;
+
+            if (Enemy.getLife() >= Enemy.getLifeSize()*0.80)
+            {
+                chanceATK = 45;
+                chanceDEF = 45;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.80)
+            {
+                chanceATK = 25;
+                chanceDEF = 50;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.50)
+            {
+                chanceATK = 15;
+                chanceDEF = 40;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.15)
+            {
+                chanceATK = 5;
+                chanceDEF = 30;
+            }
+
+            if ( (0 < Mode) && (Mode <= chanceATK) )
+            {
+                Enemy.Attack();
+            }
+            else if( (chanceATK < Mode) && (Mode <= (chanceATK + chanceDEF)) )
+            {
+                Enemy.Defence();
+            }
+            else
+            {
+                Enemy.runAway();
             }
         }
     }
@@ -523,15 +584,46 @@ namespace Library
         public override void createEnemies()
         {
             
-        }     
+        }   
+        public override void roundEnemies(Monster Enemy)
+        {
+            int Mode = random.Next(0,100);
+            int chanceATK = 33;
+
+            if (Enemy.getLife() >= Enemy.getLifeSize()*0.80)
+            {
+                chanceATK = 75;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.80)
+            {
+                chanceATK = 50;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.50)
+            {
+                chanceATK = 25;
+            }
+            else if (Enemy.getLife() <= Enemy.getLifeSize()*0.15)
+            {
+                chanceATK = 10;
+            }
+
+            if ( (0 < Mode) && (Mode <= chanceATK) )
+            {
+                Enemy.Attack();
+            }
+            else if( (chanceATK < Mode) && (Mode <= 100 ) )
+            {
+                Enemy.Defence();
+            }
+        }
     }
     public class Program
     {
         public static void Main()
         {
-            MonsterFactory oFactory = new MonsterFactory();
-            Monster oZombie = oFactory.CreateMonster("Zombie", 1);
-            Monster oSpider = oFactory.CreateMonster("GigantSpider", 1);
+            //MonsterFactory oFactory = new MonsterFactory();
+            //Monster oZombie = oFactory.CreateMonster("Zombie", 1);
+            //Monster oSpider = oFactory.CreateMonster("GigantSpider", 1);
             //oZombie.showStatus();
             //oSpider.showStatus();
 

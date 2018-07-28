@@ -25,4 +25,12 @@
     </Chars>
     <save />
   </User>
+  <User>
+    <username>moraeszao</username>
+    <password>javali</password>
+    <Chars>
+      <char class="Assassin">Martha</char>
+    </Chars>
+    <save />
+  </User>
 </Users>

@@ -145,18 +145,18 @@ namespace HeroSpace
 		{
 			//Atk 1
 			atk1.Id = 1;
-			atk1.Nome = "";
-			atk1.Dano = 1;
+			atk1.Nome = "The Power Knife";
+			atk1.Dano = 2 * ATK;
 
 			//Atk 2
 			atk2.Id = 2;
-			atk2.Nome = "";
-			atk2.Dano = 1;
+			atk2.Nome = "Infinite Smash";
+			atk2.Dano = 3 * ATK;
             
 			//Atk 3
 			atk3.Id = 3;
-			atk3.Nome = "";
-			atk3.Dano = 1;
+			atk3.Nome = "Ultimate Blade";
+			atk3.Dano = 4 * ATK;
 
 			classe = "Warrior";
 			name = nome += " The Grand Warrior";
@@ -176,18 +176,18 @@ namespace HeroSpace
 		{
 			//Atk 1
             atk1.Id = 1;
-            atk1.Nome = "";
-            atk1.Dano = 1;
+            atk1.Nome = "Blue Flame";
+            atk1.Dano = 3 * ATK;
 
             //Atk 2
             atk2.Id = 2;
-            atk2.Nome = "";
-            atk2.Dano = 1;
+            atk2.Nome = "Ice Edge";
+            atk2.Dano = 2 * ATK;
 
             //Atk 3
             atk3.Id = 3;
-            atk3.Nome = "";
-            atk3.Dano = 1;
+            atk3.Nome = "Magic Storm";
+            atk3.Dano = 5 * ATK;
 
 			classe = "Mage";
 			name = nome += " The Reliable Mage";
@@ -207,18 +207,18 @@ namespace HeroSpace
         {
 			//Atk 1
             atk1.Id = 1;
-            atk1.Nome = "";
-            atk1.Dano = 1;
+            atk1.Nome = "Backdoor";
+            atk1.Dano = 5 * ATK;
 
             //Atk 2
             atk2.Id = 2;
-            atk2.Nome = "";
-            atk2.Dano = 1;
+            atk2.Nome = "Furtive Attack";
+            atk2.Dano = 5 * ATK;
 
             //Atk 3
             atk3.Id = 3;
-            atk3.Nome = "";
-            atk3.Dano = 1;
+            atk3.Nome = "Killing Force";
+            atk3.Dano = 8 * ATK;
 
 			classe = "Assassin";
             name = nome += "The Unstoppable Assasin";

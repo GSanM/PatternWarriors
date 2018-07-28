@@ -333,7 +333,8 @@ namespace Menu
             switch (fala)
             {
                 case 1:
-                    library.slowWrite(username += " was searching for knowledge, then he decided to leave in his journey to find the Pattern Scrolls. Each scroll hold the secret of a certain pattern. To reach them, it is necessary to defeat the monsters that keep them.", Constants.TEXT_SPEED2, true);
+					Console.WriteLine("");
+                    library.slowWrite(username += " was searching for knowledge, then the Pattern Scrolls' journey seems to be the best way to find some. Each scroll hold the secret of a certain pattern. To reach them, it is necessary to defeat the monsters that keep them.", Constants.TEXT_SPEED2, true);
                     break;
             }
         }
@@ -383,6 +384,8 @@ namespace Menu
 				}
 			}
             conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
+            
+			this.ImprimeFala(1, charname);
 
 			return 1;
 		}
@@ -401,7 +404,6 @@ namespace Menu
 					nova.CriaConta();
 					Console.Clear();
 					menuPrincipal.NewChar(nova);
-					menuPrincipal.ImprimeFala(1, nova.Username);
                     //Colocar opcao de escolher char
 					break;
 				case 2:

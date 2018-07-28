@@ -5,3 +5,4 @@
 /home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.csproj.CoreCompileInputs.cache
 /home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.exe
 /home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.pdb
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/Hero.dll

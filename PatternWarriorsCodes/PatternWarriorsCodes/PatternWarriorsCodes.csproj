@@ -33,14 +33,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Xml" />
     <Reference Include="slowWrite">
-      <HintPath>..\..\dll Files\slowWrite.dll</HintPath>
+      <HintPath>..\..\dllFiles\slowWrite.dll</HintPath>
     </Reference>
+<<<<<<< HEAD
     <Reference Include="Monsters">
       <HintPath>..\..\Library\Monsters.dll</HintPath>
     </Reference>
     <Reference Include="Table">
       <HintPath>..\..\Library\Table.dll</HintPath>
+=======
+    <Reference Include="Hero">
+      <HintPath>..\..\dllFiles\Hero.dll</HintPath>
+>>>>>>> 710e8338bb107ee3f6d898aa0c6e90413ad402ee
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Program.cs" />
+    <None Include="Hero.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

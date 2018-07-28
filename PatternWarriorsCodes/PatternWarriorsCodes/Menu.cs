@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 static class Constants
 {
+	public const int TEXT_SPEED_MENU = 25;
 	public const int TEXT_SPEED1 = 20;
 	public const int TEXT_SPEED2 = 50;
 	public const int TEXT_SPEED3 = 100;
@@ -148,6 +149,31 @@ namespace Menu
 			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1, true );
 		}
 
+		public void ImprimeMenu2()
+		{
+			library.slowWrite( "##################################################", 5, true );
+			library.slowWrite( "# ______         _    _                          #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# | ___ \\       | |  | |                         #",   Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# | |_/ /  __ _ | |_ | |_   ___  _ __  _ __      #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# |  __/  / _` || __|| __| / _ \\ | '__|| '_  \\   # ", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# | |    | (_| || |_ | |_  | __/ | |   | | | |   #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# \\_|     \\__,_| \\__| \\__| \\___| |_| |_| | |_|   #", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#                                                #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# _    _                     _                   #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#| |  | |                   (_)                  #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#| |  | |  __ _  _ __  _ __  _   ___   _ __  ___ #",    Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#| |/\\| | / _` || '__|| '__|| | / _ \\ | '__|/ __|#",  Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#\\  /\\  /| (_| || |   | |   | || (_) || |   \\__ \\# ", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "# \\/  \\/  \\__,_||_|   |_|   |_| \\___/ |_|   |___/#",Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#                                                #",    Constants.TEXT_SPEED_MENU, true );
+
+			library.slowWrite( "##################################################", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#################### 1 Start  ####################", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#################### 2 Load   ####################", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "#################### 3 Quit   ####################", Constants.TEXT_SPEED_MENU, true );
+			library.slowWrite( "##################################################", Constants.TEXT_SPEED_MENU, true );
+		}
+
         public void ImprimeAtkDef()
 		{
 			library.slowWrite("1 Attack", Constants.TEXT_SPEED1, true);
@@ -183,7 +209,7 @@ namespace Menu
         public static int Main()
 		{
 			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
-			menuPrincipal.ImprimeMenu();
+			menuPrincipal.ImprimeMenu2();
 			menuPrincipal.SetChosed();
 
             //Teste de Save

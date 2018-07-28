@@ -11,283 +11,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Library;
 
 namespace Library
 {
-
-    class ArrayPrinter
-    {
-    #region Declarations
-
-    static bool isLeftAligned = false;
-    const string cellLeftTop = "┌";
-    const string cellRightTop = "┐";
-    const string cellLeftBottom = "└";
-    const string cellRightBottom = "┘";
-    const string cellHorizontalJointTop = "┬";
-    const string cellHorizontalJointbottom = "┴";
-    const string cellVerticalJointLeft = "├";
-    const string cellTJoint = "┼";
-    const string cellVerticalJointRight = "┤";
-    const string cellHorizontalLine = "─";
-    const string cellVerticalLine = "│";
-
-    #endregion
-
-    #region Private Methods
-
-    private static int GetMaxCellWidth(string[,] arrValues)
-    {
-        int maxWidth = 1;
-
-        for (int i = 0; i < arrValues.GetLength(0); i++)
-        {
-            for (int j = 0; j < arrValues.GetLength(1); j++)
-            {
-                int length = arrValues[i, j].Length;
-                if (length > maxWidth)
-                {
-                    maxWidth = length;
-                }
-            }
-        }
-
-        return maxWidth;
-    }
-
-    private static string GetDataInTableFormat(string[,] arrValues)
-    {
-        string formattedString = string.Empty;
-
-        if (arrValues == null)
-            return formattedString;
-
-        int dimension1Length = arrValues.GetLength(0);
-        int dimension2Length = arrValues.GetLength(1);
-
-        int maxCellWidth = GetMaxCellWidth(arrValues);
-        int indentLength = (dimension2Length * maxCellWidth) + (dimension2Length - 1);
-        //printing top line;
-        formattedString = string.Format("{0}{1}{2}{3}", cellLeftTop, Indent(indentLength), cellRightTop, System.Environment.NewLine);
-
-        for (int i = 0; i < dimension1Length; i++)
-        {
-            string lineWithValues = cellVerticalLine;
-            string line = cellVerticalJointLeft;
-            for (int j = 0; j < dimension2Length; j++)
-            {
-                string value = (isLeftAligned) ? arrValues[i, j].PadRight(maxCellWidth, ' ') : arrValues[i, j].PadLeft(maxCellWidth, ' ');
-                lineWithValues += string.Format("{0}{1}", value, cellVerticalLine);
-                line += Indent(maxCellWidth);
-                if (j < (dimension2Length - 1))
-                {
-                    line += cellTJoint;
-                }
-            }
-            line += cellVerticalJointRight;
-            formattedString += string.Format("{0}{1}", lineWithValues, System.Environment.NewLine);
-            if (i < (dimension1Length - 1))
-            {
-                formattedString += string.Format("{0}{1}", line, System.Environment.NewLine);
-            }
-        }
-
-        //printing bottom line
-        formattedString += string.Format("{0}{1}{2}{3}", cellLeftBottom, Indent(indentLength), cellRightBottom, System.Environment.NewLine);
-        return formattedString;
-    }
-
-    private static string Indent(int count)
-    {
-        return string.Empty.PadLeft(count, '─');                 
-    }
-
-    #endregion
-
-    #region Public Methods
-
-    public static void PrintToStream(string[,] arrValues, StreamWriter writer)
-    {
-        if (arrValues == null)
-            return;
-
-        if (writer == null)
-            return;
-
-        writer.Write(GetDataInTableFormat(arrValues));
-    }
-
-    public static void PrintToConsole(string[,] arrValues)
-    {
-        if (arrValues == null)
-            return;
-
-        Console.WriteLine(GetDataInTableFormat(arrValues));
-    }
-    #endregion
-    }
-
-/** ..:: Factory Pattern ::.. 
- *
- */
-    class MonsterFactory
-	{
-		public Monster CreateMonster(string name, int level)
-		{
-			Monster oMonster = null;
-			switch (name)
-            {
-                case "GigantSpider":
-                    oMonster = new GigantSpider(level);
-                break;
-                case "Zombie":
-                    oMonster = new Zombie(level);
-                break;
-                default:
-                Console.WriteLine("não foi possivel criar monstro");
-                break;
-            }
-			
-			return oMonster;
-		}
-	}
-	public abstract class Monster
-	{
-        protected Random random = new Random();
-
-		protected string name;
-        protected string description;
-        protected int numeroDeIdentificacao;
-        protected int level;
-        protected int ATK;
-        protected int DEF;
-        protected int lifeSize;
-        protected int actualLife;
-        protected bool ATKMode;
-        protected bool DEFMode;
-        protected bool RUNMode;
-
-        public void Attack()
-        {
-            ATKMode = true;
-            DEFMode = false;
-            RUNMode = false;
-        }
-        public void Defence()
-        {
-            ATKMode = false;
-            DEFMode = true;
-            RUNMode = false;
-        }
-        public void runAway()
-        {
-            ATKMode = false;
-            DEFMode = false;
-            RUNMode = true;
-        }
-
-        public void receiveDamage(int damage)
-        {
-            actualLife = actualLife - damage;
-        }
-        
-        public string getMode()
-        {
-            if(ATKMode == true)
-            { 
-                return "ATK";
-            }
-            if(DEFMode == true)
-            {
-               return "DEF";
-            }
-            if(RUNMode == true)
-            {
-               return "RUN";
-            }
-            return "DEF";
-        }
-        public int getLife()
-        {
-            return actualLife;
-        }
-        public int getLifeSize()
-        {
-            return lifeSize;
-        }
-        public int getATK()
-        {
-            return ATK;
-        }
-        public int getDEF()
-        {
-            return DEF;
-        }
-        public string getName()
-        {
-            return name;
-        }
-        public string getDescription()
-        {
-            return description;
-        }
-        public void setID(int ID)
-        {
-            numeroDeIdentificacao = ID;
-        }
-        public int getID()
-        {
-            return numeroDeIdentificacao;
-        }
-        
-        public void showStatus()
-        {
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Life: " + lifeSize + "/" + actualLife);
-            Console.WriteLine("Level: " + level);
-            Console.WriteLine("ATK: " + ATK);
-            Console.WriteLine("DEF: " + DEF);
-        }
-	}
-    public class GigantSpider: Monster
-	{
-		public GigantSpider(int level)
-        {
-            name = "Gigant Spider";
-            this.level = level;    
-
-            ATK = random.Next(10,20) * level;
-            DEF = random.Next(5,15) * level;
-            
-            lifeSize = 60 * level;
-            actualLife = lifeSize;
-
-            ATKMode = false;
-            DEFMode = false;
-            RUNMode = false;
-        }
-	}
-    public class Zombie: Monster
-	{
-		public Zombie(int level)
-        {
-            name = "Zombie";
-            this.level = level;    
-
-            ATK = random.Next(16,30) * level;
-            DEF = random.Next(0,5) * level;
-            
-            lifeSize = 40 * level;
-            actualLife = lifeSize;
-
-            ATKMode = false;
-            DEFMode = false;
-            RUNMode = false;
-        }
-	}
 /** ..:: Template Pattern ::.. 
  */
-    abstract class Fight
+    public abstract class Fight
     {        
         protected Random random = new Random();
         protected Monster hero;
@@ -520,7 +250,7 @@ namespace Library
         }    
     }
 
-    class normalFight: Fight
+    public class normalFight: Fight
     {        
         public override void createEnemies()
         {
@@ -579,7 +309,7 @@ namespace Library
             }
         }
     }
-    class Boss: Fight
+    public class Boss: Fight
     {   
         public override void createEnemies()
         {
@@ -615,22 +345,6 @@ namespace Library
             {
                 Enemy.Defence();
             }
-        }
-    }
-    public class Program
-    {
-        public static void Main()
-        {
-            //MonsterFactory oFactory = new MonsterFactory();
-            //Monster oZombie = oFactory.CreateMonster("Zombie", 1);
-            //Monster oSpider = oFactory.CreateMonster("GigantSpider", 1);
-            //oZombie.showStatus();
-            //oSpider.showStatus();
-
-            normalFight oFight = new normalFight();
-            oFight.startFight();
-            
-
         }
     }
 }

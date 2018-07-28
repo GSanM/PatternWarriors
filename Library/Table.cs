@@ -1,3 +1,8 @@
+/**
+ * ..:: Library for Tables ::..
+ * 
+ * 
+ */
 using System;
 using System.IO;
 using System.Collections;
@@ -5,7 +10,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-class ArrayPrinter
+namespace Library
+{
+
+    public class ArrayPrinter
     {
     #region Declarations
 
@@ -114,23 +122,6 @@ class ArrayPrinter
 
         Console.WriteLine(GetDataInTableFormat(arrValues));
     }
-
     #endregion
-
-    static void Main(string[] args)
-    {           
-        int value = 997;
-        string[,] arrValues = new string[5, 7];
-        for (int i = 0; i < arrValues.GetLength(0); i++)
-        {
-            for (int j = 0; j < arrValues.GetLength(1); j++)
-            {
-                value++;
-                arrValues[i, j] = value.ToString();
-            }
-        }
-        ArrayPrinter.PrintToConsole(arrValues);
-        Console.ReadLine();
     }
 }
-

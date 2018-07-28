@@ -1,4 +1,5 @@
 ﻿using Library;
+using HeroSpace;
 using System;
 using System.IO;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Menu
 	public class Conta
 	{
 		public string Username { get; set; }
-		private string Senha { get; set; }
+		public string Senha { get; set; }
 
         //Cria Arquivo XML com header
         private void CriaXml()
@@ -57,6 +58,9 @@ namespace Menu
             elementPass.AppendChild(passwd);
             elementUser.AppendChild(elementPass);
 
+			XmlElement elementChars = doc.CreateElement(string.Empty, "Chars", string.Empty);
+			elementUser.AppendChild(elementChars);
+
             XmlElement elementSave = doc.CreateElement(string.Empty, "save", string.Empty);
             elementUser.AppendChild(elementSave);
 
@@ -81,6 +85,36 @@ namespace Menu
 			}
                        
 			doc.Save("database.xml");
+		}
+
+		public void SalvaChar(string user, string pass, string charname, string charclass)
+		{
+			XmlDocument doc = new XmlDocument();
+            doc.Load("database.xml");
+
+			XmlNodeList aNodes = doc.SelectNodes("/Users/User");
+			foreach (XmlNode node in aNodes)
+			{
+				XmlNode NodeUsername = node.SelectSingleNode("username");
+				if (NodeUsername.InnerText == user)
+				{
+					XmlNode NodePassw = node.SelectSingleNode("password");
+					if (NodePassw.InnerText == pass)
+					{
+						XmlNode NodeChars = node.SelectSingleNode("Chars");
+						XmlElement elementNewChar = doc.CreateElement(string.Empty, "char", string.Empty);
+						XmlAttribute attCharClass = doc.CreateAttribute("class");
+						attCharClass.Value = charclass;
+						elementNewChar.Attributes.SetNamedItem(attCharClass);
+						XmlText charNameText = doc.CreateTextNode(charname);
+						elementNewChar.AppendChild(charNameText);
+						NodeChars.AppendChild(elementNewChar);                        
+						break;
+					}
+				}
+			}
+
+            doc.Save("database.xml");
 		}
 
         //Procura o save do usuario no arquivo XML
@@ -304,6 +338,55 @@ namespace Menu
             }
         }
 
+        public int NewChar(Conta conta)
+		{
+			string charname;
+			string charclass;
+
+			library.slowWrite("Let's create a new character!", Constants.TEXT_SPEED2, true);
+			library.slowWrite("What will be his/her name? ", Constants.TEXT_SPEED2, false);
+			charname = Console.ReadLine();
+
+			//Colocar tabelhinha maneira aqui
+            Console.WriteLine("");
+			library.slowWrite("Choose a class:", Constants.TEXT_SPEED2, true);
+
+            Hero Warrior = new Warrior("");
+            Hero Mage = new Mage("");
+            Hero Assassin = new Assassin("");
+
+            Warrior.showPresentation();
+            Mage.showPresentation();
+            Assassin.showPresentation();
+
+            while(true)
+			{
+				charclass = Console.ReadLine();
+                if (charclass == "Assassin" || charclass == "assassin")
+                {
+                    library.slowWrite("Creation succeed! Welcome to Assassins' World.", Constants.TEXT_SPEED2, true);
+					break;
+                }
+                else if (charclass == "Mage" || charclass == "mage")
+                {
+                    library.slowWrite("Creation succeed! Welcome to Mages' World.", Constants.TEXT_SPEED2, true);
+					break;
+                }
+                else if (charclass == "Warrior" || charclass == "warrior")
+                {
+                    library.slowWrite("Creation succeed! Welcome to Warriors' World.", Constants.TEXT_SPEED2, true);
+					break;
+                }
+				else
+				{
+					Console.WriteLine("Incorret name! Try again");
+				}
+			}
+            conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
+
+			return 1;
+		}
+
         public void SetChosed()
 		{
 
@@ -317,7 +400,9 @@ namespace Menu
 					MenuPrincipal menuPrincipal = Instance;
 					nova.CriaConta();
 					Console.Clear();
+					menuPrincipal.NewChar(nova);
 					menuPrincipal.ImprimeFala(1, nova.Username);
+                    //Colocar opcao de escolher char
 					break;
 				case 2:
 					Conta nova2 = new Conta();
@@ -332,6 +417,8 @@ namespace Menu
             
 		}
 
+
+
         public static int Main()
 		{
 			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
@@ -341,7 +428,7 @@ namespace Menu
             //Teste de Save
 			Save memoria = new Save();
 			Caretaker armazenador = new Caretaker(memoria);
-            
+
 			/*
 			memoria.SetState("Estado 1");
 			armazenador.SaveState();
@@ -353,6 +440,7 @@ namespace Menu
 			armazenador.RestoreState();
 			Console.WriteLine(memoria.GetState());
             */
+           
 
 			return 0;
 		}

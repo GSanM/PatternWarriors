@@ -1,10 +1,22 @@
 ﻿<Properties StartupConfiguration="{313B6470-98FB-4E9B-B045-B88D15D8A03E}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="PatternWarriorsCodes/Hero.cs">
     <Files>
-      <File FileName="PatternWarriorsCodes/Hero.cs" Line="132" Column="11" />
-      <File FileName="../Library/monstros.cs" Line="242" Column="9" />
-      <File FileName="PatternWarriorsCodes/Menu.cs" Line="9" Column="1" />
+      <File FileName="PatternWarriorsCodes/Hero.cs" Line="212" Column="4" />
+      <File FileName="../Library/monstros.cs" Line="11" Column="13" />
+      <File FileName="PatternWarriorsCodes/Menu.cs" Line="405" Column="53" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="PatternWarriorsCodes" expanded="True">
+            <Node name="PatternWarriorsCodes" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="Hero.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

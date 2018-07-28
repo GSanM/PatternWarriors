@@ -1,4 +1,5 @@
 ﻿using System;
+using Library;
 
 static class Constants
 {
@@ -7,21 +8,35 @@ static class Constants
     public const int TEXT_SPEED3 = 100;
 }
 
-namespace Library
+namespace HeroSpace
 {
 	public abstract class Hero
 	{
-		public abstract class Ataque
+		public class Ataque
         {
-			public int id { get; set; }
-			public string nome { get; set; }
-			public int dano { get; set; }
+			private int id;
+			public int Id 
+			{ 
+				get { return id; } 
+				set { id = value; }
+			}
+			private string nome;
+			public string Nome 
+			{ 
+				get { return nome; }
+                set { nome = value; } 
+			}
+			private int dano;
+			public int Dano 
+			{
+				get { return dano; }
+                set { dano = value; }
+			}
 
             public void Atacar()
             {
                 //Possivelmente utilizar composite para combo
             }
-
 
         }
         
@@ -30,9 +45,9 @@ namespace Library
 		protected string name;
 		protected string classe;
 		protected string description;
-		protected Ataque atk1;
-		protected Ataque atk2;
-		protected Ataque atk3;
+		protected Ataque atk1 = new Ataque();
+		protected Ataque atk2 = new Ataque();
+		protected Ataque atk3 = new Ataque();
 		protected int level;
 		protected int ATK;
 		protected int DEF;
@@ -119,8 +134,8 @@ namespace Library
         public void showPresentation()
 		{
 			//Colocar na tabela
-			Console.WriteLine("Teste");
-			library.slowWrite(this.classe += this.description, Constants.TEXT_SPEED1, true);
+            library.slowWrite(this.classe + " - " + this.description, Constants.TEXT_SPEED1, true);
+			Console.WriteLine("");
 		}
 	}
 
@@ -129,19 +144,19 @@ namespace Library
 		public Warrior(string nome)
 		{
 			//Atk 1
-			atk1.id = 1;
-			atk1.nome = "";
-			atk1.dano = 1;
+			atk1.Id = 1;
+			atk1.Nome = "";
+			atk1.Dano = 1;
 
 			//Atk 2
-			atk2.id = 2;
-			atk2.nome = "";
-			atk2.dano = 1;
-
+			atk2.Id = 2;
+			atk2.Nome = "";
+			atk2.Dano = 1;
+            
 			//Atk 3
-			atk3.id = 3;
-			atk3.nome = "";
-			atk3.dano = 1;
+			atk3.Id = 3;
+			atk3.Nome = "";
+			atk3.Dano = 1;
 
 			classe = "Warrior";
 			name = nome += " The Grand Warrior";
@@ -160,19 +175,19 @@ namespace Library
 		public Mage(string nome)
 		{
 			//Atk 1
-            atk1.id = 1;
-            atk1.nome = "";
-            atk1.dano = 1;
+            atk1.Id = 1;
+            atk1.Nome = "";
+            atk1.Dano = 1;
 
             //Atk 2
-            atk2.id = 2;
-            atk2.nome = "";
-            atk2.dano = 1;
+            atk2.Id = 2;
+            atk2.Nome = "";
+            atk2.Dano = 1;
 
             //Atk 3
-            atk3.id = 3;
-            atk3.nome = "";
-            atk3.dano = 1;
+            atk3.Id = 3;
+            atk3.Nome = "";
+            atk3.Dano = 1;
 
 			classe = "Mage";
 			name = nome += " The Reliable Mage";
@@ -191,19 +206,19 @@ namespace Library
 		public Assassin(string nome)
         {
 			//Atk 1
-            atk1.id = 1;
-            atk1.nome = "";
-            atk1.dano = 1;
+            atk1.Id = 1;
+            atk1.Nome = "";
+            atk1.Dano = 1;
 
             //Atk 2
-            atk2.id = 2;
-            atk2.nome = "";
-            atk2.dano = 1;
+            atk2.Id = 2;
+            atk2.Nome = "";
+            atk2.Dano = 1;
 
             //Atk 3
-            atk3.id = 3;
-            atk3.nome = "";
-            atk3.dano = 1;
+            atk3.Id = 3;
+            atk3.Nome = "";
+            atk3.Dano = 1;
 
 			classe = "Assassin";
             name = nome += "The Unstoppable Assasin";
@@ -216,20 +231,4 @@ namespace Library
             lifeSize = 150;
         }
 	}
-
-	public class Mainha
-	{
-		public static int Main()
-		{
-			Hero Warrior = new Warrior("");
-			Hero Mage = new Mage("");
-			Hero Assassin = new Assassin("");
-
-			Warrior.showPresentation();
-			Mage.showPresentation();
-			Assassin.showPresentation();
-
-            return 0;
-        }
-	}	
 }

@@ -31,21 +31,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="slowWrite">
-      <HintPath>..\..\dll Files\slowWrite.dll</HintPath>
-    </Reference>
-    <Reference Include="slowWrite">
-      <HintPath>..\..\dll Files\slowWrite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="slowWrite">
+      <HintPath>..\..\dllFiles\slowWrite.dll</HintPath>
+    </Reference>
+    <Reference Include="Hero">
+      <HintPath>..\..\dllFiles\Hero.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Hero.cs" />
+    <Compile Include="Menu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Program.cs" />
-    <None Include="Menu.cs" />
+    <None Include="Hero.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

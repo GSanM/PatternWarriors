@@ -8,8 +8,6 @@
     <RootNamespace>PatternWarriorsCodes</RootNamespace>
     <AssemblyName>PatternWarriorsCodes</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,22 +35,13 @@
     <Reference Include="slowWrite">
       <HintPath>..\..\dllFiles\slowWrite.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-    <Reference Include="Monsters">
-      <HintPath>..\..\Library\Monsters.dll</HintPath>
-    </Reference>
-    <Reference Include="Table">
-      <HintPath>..\..\Library\Table.dll</HintPath>
-=======
     <Reference Include="Hero">
       <HintPath>..\..\dllFiles\Hero.dll</HintPath>
->>>>>>> 710e8338bb107ee3f6d898aa0c6e90413ad402ee
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Menu.cs" />
-    <Compile Include="Fight.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Program.cs" />

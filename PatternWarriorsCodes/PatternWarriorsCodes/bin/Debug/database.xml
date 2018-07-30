@@ -5,6 +5,9 @@
     <password>ragatanga</password>
     <Chars>
       <char />
+      <char class="Warrior">Joelson</char>
+      <char class="Mage">Josefina</char>
+      <char class="1" stage="">Thulio</char>
     </Chars>
     <save />
   </User>
@@ -30,6 +33,22 @@
     <password>javali</password>
     <Chars>
       <char class="Assassin">Martha</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>josue</username>
+    <password>lula</password>
+    <Chars>
+      <char class="Warrior">Holue</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>hula</username>
+    <password>joelma</password>
+    <Chars>
+      <char class="a" stage="1">Jhon</char>
     </Chars>
     <save />
   </User>

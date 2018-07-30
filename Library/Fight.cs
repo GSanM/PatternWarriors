@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Library;
+using HeroSpace;
 
 namespace Library
 {
@@ -20,7 +21,7 @@ namespace Library
     public abstract class Fight
     {        
         protected Random random = new Random();
-        protected Monster hero;
+        protected Hero hero;
         protected List<Monster> EnemyList = new List<Monster>();
         int IndexMonster;
         
@@ -184,9 +185,20 @@ namespace Library
                 }
                 else
                 {
-                    aux.receiveDamage(hero.getATK());
-                    Console.WriteLine("seu ataque pega em cheio!!");
-                    Console.WriteLine("Dano: " + hero.getATK());                        
+					if(hero.getCombo() == 3)
+					{
+						aux.receiveDamage(hero.getATK());
+						Console.WriteLine("You used the combo! SUPER DAMAGE!!!");
+						Console.WriteLine("Damage: " + hero.getATK());
+						hero.setCombo(0);
+					}
+					else
+					{
+						aux.receiveDamage(hero.getATK());
+                        Console.WriteLine("Great attack!");
+						Console.WriteLine("Damage: " + hero.getATK());
+						hero.addCombo();
+                    }
                 }
             }
             else

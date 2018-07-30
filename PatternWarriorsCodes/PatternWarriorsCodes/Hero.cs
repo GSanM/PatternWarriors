@@ -32,12 +32,6 @@ namespace HeroSpace
 				get { return dano; }
                 set { dano = value; }
 			}
-
-            public void Atacar()
-            {
-                //Possivelmente utilizar composite para combo
-            }
-
         }
         
 		protected Random random = new Random();
@@ -48,6 +42,7 @@ namespace HeroSpace
 		protected Ataque atk1 = new Ataque();
 		protected Ataque atk2 = new Ataque();
 		protected Ataque atk3 = new Ataque();
+		protected int combo;
 		protected int level;
 		protected int ATK;
 		protected int DEF;
@@ -121,6 +116,18 @@ namespace HeroSpace
 		{
 			return description;
 		}
+		public void setCombo(int c)
+		{
+			combo = c;
+		}
+		public int getCombo()
+		{
+			return combo;
+		}
+		public void addCombo()
+		{
+			combo++;
+		}
 
 		public void showStatus()
 		{
@@ -167,6 +174,35 @@ namespace HeroSpace
 			ATK = 15;
 			DEF = 15;
 			lifeSize = 200;
+
+			//Composite para o combo
+			public int getATK()
+            {
+                if(combo == 3)
+                {
+                    return atk1.Dano + atk2.Dano + atk3.Dano;
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    
+                    switch(rnd.Next(1, 4))
+                    {
+                        case 1:
+                            return atk1.Dano;
+                            break;
+                        case 2:
+                            return atk2.Dano;
+                            break;
+                        case 3:
+                            return atk3.Dano;
+                            break;
+                        case 4:
+                            return ATK;
+                            break;
+                    }   
+                }
+            }   
 		}
 	}
 
@@ -198,6 +234,35 @@ namespace HeroSpace
             ATK = 20;
             DEF = 10;
             lifeSize = 130;
+
+			//Composite para o combo
+			public int getATK()
+            {
+				if(combo == 3)
+                {
+                    return atk1.Dano + atk2.Dano + atk3.Dano;
+                }
+                else
+                {
+					Random rnd = new Random();
+                    
+					switch(rnd.Next(1, 4))
+					{
+						case 1:
+							return atk1.Dano;
+							break;
+						case 2:
+							return atk2.Dano;
+							break;
+						case 3:
+							return atk3.Dano;
+							break;
+						case 4:
+							return ATK;
+							break;
+					}	
+                }
+            }   
 		}
 	}
 
@@ -229,6 +294,35 @@ namespace HeroSpace
             ATK = 30;
             DEF = 8;
             lifeSize = 150;
+
+            //Composite para o combo
+			public int getATK()
+            {
+                if(combo == 3)
+                {
+                    return atk1.Dano + atk2.Dano + atk3.Dano;
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    
+                    switch(rnd.Next(1, 4))
+                    {
+                        case 1:
+                            return atk1.Dano;
+                            break;
+                        case 2:
+                            return atk2.Dano;
+                            break;
+                        case 3:
+                            return atk3.Dano;
+                            break;
+                        case 4:
+                            return ATK;
+                            break;
+                    }   
+                }
+            }   
         }
 	}
 }

@@ -132,6 +132,28 @@ namespace HeroSpace
 			spec_atk = sa;
 		}
 
+        //Metodos de itens
+		public void ItemAtk(int item)
+		{
+			ATK += item;
+		}
+
+		public void ItemDef(int item)
+        {
+            DEF += item;
+        }
+
+		public void ItemLife(int item)
+        {
+            lifeSize += item;
+        }
+
+		public void Potion(int item)
+        {
+            actualLife += item;
+        }
+        //============================
+
 		public int ImprimeAtaque()
 		{
 			library.slowWrite("1 - " + atk1.Nome, Constants.TEXT_SPEED1, true);

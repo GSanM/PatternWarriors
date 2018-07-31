@@ -32,7 +32,7 @@ namespace Library
                     oMonster = new Zombie(level);
                 break;
                 default:
-                Console.WriteLine("não foi possivel criar monstro");
+					Console.WriteLine("It wasn't possible to create a monster :(");
                 break;
             }
 			

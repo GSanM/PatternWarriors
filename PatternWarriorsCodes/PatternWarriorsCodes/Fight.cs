@@ -150,7 +150,7 @@ namespace Library
                     }
                 }
 
-                Console.Write("Voce atacou seu inimigo " + aux.getName() + " com toda sua força, ");
+                Console.Write("You have attacked your enemy " + aux.getName() + " with all your strenght! ");
 
                 if(aux.getMode().Equals("DEF")){
                     int dano = hero.getATK() - aux.getDEF();
@@ -159,17 +159,17 @@ namespace Library
                     {
                         if(aux.getLife() > 0)
                         {
-                            Console.WriteLine("ele defende seu ataque parcialmente e ganha uma nova cicatriz");
-                            Console.WriteLine("Dano: " + dano);                        
+                            Console.WriteLine("He partially defends your attack and wins a beatiful scar.");
+                            Console.WriteLine("Damage given: " + dano);                        
                         }
                         else
                         {
-                            Console.WriteLine("mesmo se defendendo ele não resiste ao ataque e morre");
+                            Console.WriteLine("He tries to defend himself, but doesn't resist and dies!");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("ele defende completamente seu ataque!!");
+                        Console.WriteLine("He completely defend your attack!!!");
                     }
                 }
                 else
@@ -179,7 +179,7 @@ namespace Library
 						
 						aux.receiveDamage(hero.getATK());
 						Console.WriteLine("You used the combo! SUPER DAMAGE!!!");
-						Console.WriteLine("Damage: " + hero.getATK());
+						Console.WriteLine("Damage given: " + hero.getATK());
 						hero.setCombo(0);
 					}
 					else
@@ -194,7 +194,7 @@ namespace Library
             }
             else
             {
-                Console.WriteLine("Voce decide se defender nessa rodada");
+                Console.WriteLine("You decide to defend yourself this turn.");
             }
         }
 
@@ -205,7 +205,7 @@ namespace Library
             else if(Enemy.getMode().Equals("RUN"))
             {
                 Enemy.receiveDamage(Enemy.getLife());
-                Console.WriteLine("Monster " + Enemy.getID() + " foge de voce");
+                Console.WriteLine("Monster " + Enemy.getID() + " runs from you");
             }
             else if (Enemy.getMode().Equals("ATK") ) 
             {

@@ -17,6 +17,7 @@
     <Chars>
       <char />
       <char>Malaquias</char>
+      <char class="Assassin" stage="1">Thanos</char>
     </Chars>
     <save />
   </User>

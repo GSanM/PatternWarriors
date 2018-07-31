@@ -11,29 +11,29 @@ static class Constants
 namespace HeroSpace
 {
 	public abstract class Hero
-	{
+	{        
 		public class Ataque
         {
-			private int id;
-			public int Id 
-			{ 
-				get { return id; } 
-				set { id = value; }
-			}
-			private string nome;
-			public string Nome 
-			{ 
-				get { return nome; }
+            private int id;
+            public int Id 
+            { 
+                get { return id; } 
+                set { id = value; }
+            }
+            private string nome;
+            public string Nome 
+            { 
+                get { return nome; }
                 set { nome = value; } 
-			}
-			private int dano;
-			public int Dano 
-			{
+            }
+            private int dano;
+            public int Dano 
+            {
 				get { return dano; }
                 set { dano = value; }
-			}
+            } 
         }
-        
+
 		protected Random random = new Random();
 
 		protected string name;
@@ -42,6 +42,7 @@ namespace HeroSpace
 		protected Ataque atk1 = new Ataque();
 		protected Ataque atk2 = new Ataque();
 		protected Ataque atk3 = new Ataque();
+		protected int spec_atk;
 		protected int combo;
 		protected int level;
 		protected int ATK;
@@ -100,10 +101,8 @@ namespace HeroSpace
 		{
 			return lifeSize;
 		}
-		public int getATK()
-		{
-			return ATK;
-		}
+		public abstract int getATK();
+        
 		public int getDEF()
 		{
 			return DEF;
@@ -128,16 +127,34 @@ namespace HeroSpace
 		{
 			combo++;
 		}
-
-		public void showStatus()
+		public void setSpecAttack(int sa)
 		{
-			Console.WriteLine("Name: " + name);
-			Console.WriteLine("Life: " + lifeSize + "/" + actualLife);
-			Console.WriteLine("Level: " + level);
-			Console.WriteLine("ATK: " + ATK);
-			Console.WriteLine("DEF: " + DEF);
+			spec_atk = sa;
 		}
 
+		public int ImprimeAtaque()
+		{
+			library.slowWrite("1 - " + atk1.Nome, Constants.TEXT_SPEED1, true);
+			library.slowWrite("2 - " + atk2.Nome, Constants.TEXT_SPEED1, true);
+			library.slowWrite("3 - " + atk3.Nome, Constants.TEXT_SPEED1, true);
+			library.slowWrite("4 - Basic Attack", Constants.TEXT_SPEED1, true);
+
+			return Convert.ToInt32(Console.ReadLine());
+		}
+                                
+		public void showStatus()
+        {
+            //    Console.Clear();
+            string[,] arrValues = new string[4, 1];
+
+            arrValues[0, 0] = "Hero " + name;
+			arrValues[1, 0] = "Life " + actualLife.ToString() + "/" + lifeSize.ToString();
+			arrValues[2, 0] = "ATK " + ATK.ToString();
+            arrValues[3, 0] = "DEF " + DEF.ToString();
+
+            ArrayPrinter.PrintToConsole(arrValues);
+        }
+        
         public void showPresentation()
 		{
 			//Colocar na tabela
@@ -150,66 +167,77 @@ namespace HeroSpace
 	{
 		public Warrior(string nome)
 		{
-			//Atk 1
-			atk1.Id = 1;
-			atk1.Nome = "The Power Knife";
-			atk1.Dano = 2 * ATK;
-
-			//Atk 2
-			atk2.Id = 2;
-			atk2.Nome = "Infinite Smash";
-			atk2.Dano = 3 * ATK;
-            
-			//Atk 3
-			atk3.Id = 3;
-			atk3.Nome = "Ultimate Blade";
-			atk3.Dano = 4 * ATK;
-
 			classe = "Warrior";
-			name = nome += " The Grand Warrior";
-			level = 1;
+            name = nome += " The Grand Warrior";
+            level = 1;
 
-			description = "The Warrior is a strong and powerful class that should be choosed under a immeasurable certitude. With him, your path will can be hard as a rock, but he can handle it.";
+            description = "The Warrior is a strong and powerful class that should be choosed under a immeasurable certitude. With him, your path will can be hard as a rock, but he can handle it.";
 
-			ATK = 15;
-			DEF = 15;
-			lifeSize = 200;
+			ATK = 15 * level;
+            DEF = 15 * level;
+            lifeSize = 200 * level;
+            actualLife = lifeSize;
+			spec_atk = 0;
 
-			//Composite para o combo
-			public int getATK()
-            {
-                if(combo == 3)
+			//Atk 1
+            atk1.Id = 1;
+            atk1.Nome = "The Power Hammer";
+            atk1.Dano = 2 * ATK;
+
+            //Atk 2
+            atk2.Id = 2;
+            atk2.Nome = "Infinite Smash";
+            atk2.Dano = 3 * ATK;
+            
+            //Atk 3
+            atk3.Id = 3;
+            atk3.Nome = "Ultimate Blade";
+            atk3.Dano = 4 * ATK;
+                                                
+        }
+
+		//Composite para o combo
+		public override int getATK()
+        {
+			
+            if(combo == 3)
+			{
+				return (atk1.Dano + atk2.Dano + atk3.Dano);
+            }
+            else
+            {                                
+                switch(spec_atk)
                 {
-                    return atk1.Dano + atk2.Dano + atk3.Dano;
-                }
-                else
-                {
-                    Random rnd = new Random();
-                    
-                    switch(rnd.Next(1, 4))
-                    {
-                        case 1:
-                            return atk1.Dano;
-                            break;
-                        case 2:
-                            return atk2.Dano;
-                            break;
-                        case 3:
-                            return atk3.Dano;
-                            break;
-                        case 4:
-                            return ATK;
-                            break;
-                    }   
-                }
-            }   
-		}
+                    case 1:
+                        return atk1.Dano;                            
+                    case 2:
+                        return atk2.Dano;                            
+                    case 3:
+                        return atk3.Dano;                            
+                    case 4:
+                        return ATK; 
+					default:
+                        return ATK;
+                }   
+            }
+        }   
 	}
 
 	public class Mage: Hero
 	{
 		public Mage(string nome)
 		{
+			classe = "Mage";
+			name = nome += " The Reliable Mage";
+            level = 1;
+
+            description = "The Mage is a wise class that should be choosed carefully. A mage without control can be dangerous.";
+
+            ATK = 20 * level;
+            DEF = 10 * level;
+            lifeSize = 130 * level;
+			actualLife = lifeSize;
+
 			//Atk 1
             atk1.Id = 1;
             atk1.Nome = "Blue Flame";
@@ -225,51 +253,50 @@ namespace HeroSpace
             atk3.Nome = "Magic Storm";
             atk3.Dano = 5 * ATK;
 
-			classe = "Mage";
-			name = nome += " The Reliable Mage";
-            level = 1;
 
-            description = "The Mage is a wise class that should be choosed carefully. A mage without control can be dangerous.";
+        }
 
-            ATK = 20;
-            DEF = 10;
-            lifeSize = 130;
-
-			//Composite para o combo
-			public int getATK()
+		//Composite para o combo
+		public override int getATK()
+        {
+            if(combo == 3)
             {
-				if(combo == 3)
+                return atk1.Dano + atk2.Dano + atk3.Dano;
+            }
+            else
+            {               
+                switch(spec_atk)
                 {
-                    return atk1.Dano + atk2.Dano + atk3.Dano;
-                }
-                else
-                {
-					Random rnd = new Random();
-                    
-					switch(rnd.Next(1, 4))
-					{
-						case 1:
-							return atk1.Dano;
-							break;
-						case 2:
-							return atk2.Dano;
-							break;
-						case 3:
-							return atk3.Dano;
-							break;
-						case 4:
-							return ATK;
-							break;
-					}	
-                }
-            }   
-		}
+                    case 1:
+                        return atk1.Dano;
+                    case 2:
+                        return atk2.Dano;
+                    case 3:
+                        return atk3.Dano;
+                    case 4:
+                        return ATK;
+					default:
+                        return ATK;
+                }   
+            }
+        }   
 	}
 
 	public class Assassin: Hero
 	{
 		public Assassin(string nome)
         {
+			classe = "Assassin";
+            name = nome += "The Unstoppable Assasin";
+            level = 1;
+
+            description = "The Assassin has a lot of damage but could be killed easily if don't take care.";
+
+            ATK = 30 * level;
+            DEF = 8 * level;
+            lifeSize = 150 * level;
+			actualLife = lifeSize;
+
 			//Atk 1
             atk1.Id = 1;
             atk1.Nome = "Backdoor";
@@ -284,45 +311,32 @@ namespace HeroSpace
             atk3.Id = 3;
             atk3.Nome = "Killing Force";
             atk3.Dano = 8 * ATK;
-
-			classe = "Assassin";
-            name = nome += "The Unstoppable Assasin";
-            level = 1;
-
-            description = "The Assassin has a lot of damage but could be killed easily if don't take care.";
-
-            ATK = 30;
-            DEF = 8;
-            lifeSize = 150;
-
-            //Composite para o combo
-			public int getATK()
-            {
-                if(combo == 3)
-                {
-                    return atk1.Dano + atk2.Dano + atk3.Dano;
-                }
-                else
-                {
-                    Random rnd = new Random();
-                    
-                    switch(rnd.Next(1, 4))
-                    {
-                        case 1:
-                            return atk1.Dano;
-                            break;
-                        case 2:
-                            return atk2.Dano;
-                            break;
-                        case 3:
-                            return atk3.Dano;
-                            break;
-                        case 4:
-                            return ATK;
-                            break;
-                    }   
-                }
-            }   
         }
+
+		//Composite para o combo
+		public override int getATK()
+        {
+            if(combo == 3)
+            {
+                return atk1.Dano + atk2.Dano + atk3.Dano;
+            }
+            else
+            {                                
+                switch(spec_atk)
+                {
+                    case 1:
+                        return atk1.Dano;                            
+                    case 2:
+                        return atk2.Dano;                           
+                    case 3:
+                        return atk3.Dano;                            
+                    case 4:
+                        return ATK; 
+					default:
+						return ATK;
+                }   
+            }
+        }   
 	}
+
 }

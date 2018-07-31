@@ -1,4 +1,4 @@
-/**
+/*
  * ..:: Library for Monsters and Fights ::..
  * 
  * @author Rafael Romeu
@@ -35,12 +35,12 @@ namespace Library
             {
                 if (EnemyList.Count < 1)
                 {
-                    Console.WriteLine("You Are The Winner");
+                    Console.WriteLine("You Win!");
                     return 0;
                 }
                 if (hero.getLife() < 1)
                 {
-                    Console.WriteLine("se fudeu");
+                    Console.WriteLine("You Lose!");
                     return 1;
                 }
 
@@ -358,5 +358,22 @@ namespace Library
                 Enemy.Defence();
             }
         }
+    }
+
+	public class Program
+    {
+        /*public static void Main()
+        {
+            //MonsterFactory oFactory = new MonsterFactory();
+            //Monster oZombie = oFactory.CreateMonster("Zombie", 1);
+            //Monster oSpider = oFactory.CreateMonster("GigantSpider", 1);
+            //oZombie.showStatus();
+            //oSpider.showStatus();
+
+            normalFight oFight = new normalFight();
+            oFight.startFight();
+
+
+        }*/
     }
 }

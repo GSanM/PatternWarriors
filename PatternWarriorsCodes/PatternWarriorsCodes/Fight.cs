@@ -205,11 +205,11 @@ namespace Library
             else if(Enemy.getMode().Equals("RUN"))
             {
                 Enemy.receiveDamage(Enemy.getLife());
-                Console.WriteLine("Monster " + Enemy.getID() + " runs from you");
+                Console.WriteLine("Monster " + Enemy.getID() + " ran from you");
             }
             else if (Enemy.getMode().Equals("ATK") ) 
             {
-                Console.Write("Monster " + Enemy.getID() + " lhe ameaça com um poderoso golpe, ");
+				Console.Write("Monster " + Enemy.getID() + " threatens you with a powerful hit! ");
 
                 if(hero.getMode().Equals("DEF"))
                 {
@@ -217,25 +217,25 @@ namespace Library
                     hero.receiveDamage(dano);
                     if (dano > 0)
                     {
-                        Console.WriteLine("voce se defende mas mesmo assim recebe algum dano!!");
-                        Console.WriteLine("Dano: " + dano);                        
+                        Console.WriteLine("You defend yourself, turning the attack not so effective.");
+                        Console.WriteLine("Damage taken: " + dano);                        
                     }
                     else
                     {
-                        Console.WriteLine("voce defende completamente o ataque!!");
+                        Console.WriteLine("You defend all the damage!!");
                     }
                 }
                 else
                 {
                     int dano = Enemy.getATK();
                     hero.receiveDamage(dano);
-                    Console.WriteLine("o ataque lhe acerta com tudo!!");
-                    Console.WriteLine("Dano: " + dano);                                            
+					Console.WriteLine("The attack hit the bull's eye!!");
+                    Console.WriteLine("Damage taken: " + dano);                                            
                 }
             }
             else if(Enemy.getMode().Equals("DEF"))
             {
-                Console.WriteLine("Monster " + Enemy.getID() + " mantem a guarda alta");
+                Console.WriteLine("Monster " + Enemy.getID() + " keeps on his guard");
             }
         }
 

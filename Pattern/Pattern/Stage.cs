@@ -178,7 +178,7 @@ namespace Library
 			bool acabou = false;
 			while(acabou == false)
             {
-				if (oHero.getLife() <= 0) 
+				if (oHero.getLife() <= 0)
 				{
 					acabou = true;
 				}

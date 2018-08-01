@@ -1,0 +1,22 @@
+﻿<Properties StartupItem="Pattern/Pattern.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pattern/Menu.cs">
+    <Files>
+      <File FileName="Pattern/Program.cs" Line="10" Column="4" />
+      <File FileName="Pattern/Fight.cs" Line="268" Column="39" />
+      <File FileName="Pattern/Menu.cs" Line="546" Column="13" />
+      <File FileName="Pattern/Hero.cs" Line="11" Column="20" />
+      <File FileName="Pattern/Ambient.cs" Line="164" Column="28" />
+      <File FileName="Pattern/Tema.cs" Line="35" Column="48" />
+      <File FileName="Pattern/Stage.cs" Line="252" Column="37" />
+      <File FileName="Pattern/Monsters.cs" Line="98" Column="29" />
+      <File FileName="Pattern/slowWrite.cs" Line="32" Column="42" />
+      <File FileName="Pattern/Table.cs" Line="123" Column="17" />
+      <File FileName="Pattern/heroes.cs" Line="123" Column="25" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

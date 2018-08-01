@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatternWarriorsCodes", "PatternWarriorsCodes.csproj", "{313B6470-98FB-4E9B-B045-B88D15D8A03E}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "PatternWarriorsCodes", "PatternWarriorsCodes.csproj", "{313B6470-98FB-4E9B-B045-B88D15D8A03E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

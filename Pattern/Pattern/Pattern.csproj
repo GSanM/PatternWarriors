@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{313B6470-98FB-4E9B-B045-B88D15D8A03E}</ProjectGuid>
+    <ProjectGuid>{CED499E6-A73E-46B6-BDC0-7D1904C67698}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PatternWarriorsCodes</RootNamespace>
-    <AssemblyName>PatternWarriorsCodes</AssemblyName>
+    <RootNamespace>Pattern</RootNamespace>
+    <AssemblyName>Pattern</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
@@ -34,27 +34,23 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="slowWrite">
-      <HintPath>..\..\dllFiles\slowWrite.dll</HintPath>
-    </Reference>
-    <Reference Include="Hero">
-      <HintPath>..\..\dllFiles\Hero.dll</HintPath>
-    </Reference>
-    <Reference Include="Monsters">
-      <HintPath>..\..\Library\Monsters.dll</HintPath>
-    </Reference>
-    <Reference Include="Table">
-      <HintPath>..\..\Library\Table.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ambient.cs" />
+    <Compile Include="Monsters.cs" />
+    <Compile Include="Objects.cs" />
+    <Compile Include="Stage.cs" />
+    <Compile Include="Table.cs" />
+    <Compile Include="Tema.cs" />
+    <Compile Include="slowWrite.cs" />
     <Compile Include="Fight.cs" />
     <Compile Include="Hero.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Program.cs" />
-    <None Include="Menu.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="heroes.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="Program.cs" />
+  </ItemGroup>
 </Project>

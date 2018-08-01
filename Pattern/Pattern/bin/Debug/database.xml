@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+  <User>
+    <username>gsanm</username>
+    <password>ragatanga</password>
+    <Chars>
+      <char />
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>bozo</username>
+    <password>holy</password>
+    <Chars>
+      <char />
+      <char>Malaquias</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>rob</username>
+    <password>holyshit</password>
+    <Chars>
+      <char class="Assassin">Robervalindo</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>Romeu</password>
+    <Chars>
+      <char class="Mage" stage="1">Rafael</char>
+      <char class="Mage" stage="1">Rafael</char>
+      <char class="Warrior" stage="1">Rafael</char>
+      <char class="Warrior" stage="1">Rafael</char>
+      <char class="Mage" stage="1">Rafael</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>romeu</password>
+    <Chars>
+      <char class="Mage" stage="1">Rafael</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>
+    </username>
+    <password>
+    </password>
+    <Chars />
+    <save />
+  </User>
+  <User>
+    <username>
+    </username>
+    <password>1</password>
+    <Chars>
+      <char class="Mage" stage="1">
+      </char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>Romeu</password>
+    <Chars />
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>Romeu</password>
+    <Chars />
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>Romeu</password>
+    <Chars />
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>Romeu</password>
+    <Chars />
+    <save />
+  </User>
+</Users>

@@ -38,7 +38,7 @@ namespace Library
         
 		Hero getHero();
        
-		bool explorar();
+		Hero explorar(Hero oHero);
     }
     public abstract class Ambient: Icomposite
     {
@@ -167,22 +167,14 @@ namespace Library
 			}
 			return false;
 		}
-		public virtual bool explorar()
+		public virtual Hero explorar(Hero oHero)
         {
-            if (boss == true)
-            {
-				return true;
-            }
+			this.oHero = oHero;
             Console.WriteLine("Voce entrou na " + name);
 			bool sair = battle ();
 			//sortear uns objetos
-			if (sair == true) 
-			{
-				return true;
-			}
-            
-            
-            while(sair == false)
+
+			while(sair == false)
             {
                 Console.WriteLine("Suas opção são: ");
                 int i = 0;
@@ -200,15 +192,19 @@ namespace Library
                 }
                 else
                 {
-					acabou = AmbientList[option].explorar();
-                    if(acabou == true)
+					this.oHero = AmbientList[option].explorar(oHero);
+					if (this.oHero.getLife () <= 0) 
+					{
+						return this.oHero;
+					}
+					if(acabou == true)
                     {
                         sair = true;
                     }
                 }
             }
 
-            return acabou;
+			return this.oHero;
 
         }
 
@@ -243,17 +239,16 @@ namespace Library
 					}
 				}
 			}
+
 			return false;
 		}
-		public override bool explorar()
+		public override Hero explorar(Hero oHero)
         {
+			this.oHero = oHero;
             Console.WriteLine("Viajando ...");
-			bool sair = battle ();
-			if (sair == true) 
-			{
-				return true;
-			}
-			return false;
+			battle ();
+
+			return this.oHero;
         }
     }
     public class EntradaDaFlorestaMaldita:Ambient

@@ -178,6 +178,10 @@ namespace Library
 			bool acabou = false;
 			while(acabou == false)
             {
+				if (oHero.getLife() <= 0) 
+				{
+					acabou = true;
+				}
                 Console.Write("Você está em: ");
                 Console.WriteLine(vertex.getAmbient().getName());
 				Console.WriteLine (vertex.getAmbient ().getDescription ());
@@ -202,13 +206,13 @@ namespace Library
                 {
                     Console.WriteLine("EXPLORANDO");
                     //Explorar ambiente
-                    acabou = vertex.getAmbient().explorar();
+					oHero = vertex.getAmbient().explorar(oHero);
                 }
                 else
                 {
                     Console.WriteLine("Viajando ...");
 					oTema.journey.setHero (oHero);
-                    oTema.journey.explorar();
+					oHero = oTema.journey.explorar(oHero);
 					oTema.journey.setHero (null);
 
                     //Andar pelo mapa
@@ -217,6 +221,9 @@ namespace Library
                     vertex = verticesDisponiveis[option-1];
 					vertex.getAmbient().setHero(oHero);
                 }
+				if (oHero.getLife () <= 0) {
+					acabou = true;
+				}
 				if (acabou == true)
                 {
                     Console.WriteLine("ACABOU KRL");

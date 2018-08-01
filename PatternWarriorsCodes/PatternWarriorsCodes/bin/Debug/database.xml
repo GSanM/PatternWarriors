@@ -53,4 +53,13 @@
     </Chars>
     <save />
   </User>
+  <User>
+    <username>rafao</username>
+    <password>romeu</password>
+    <Chars>
+      <char class="Warrior" stage="1">Preconizer</char>
+      <char class="Mage" stage="1">Golias</char>
+    </Chars>
+    <save />
+  </User>
 </Users>

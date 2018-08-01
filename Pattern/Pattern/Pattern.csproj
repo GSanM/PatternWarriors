@@ -37,17 +37,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ambient.cs" />
-    <Compile Include="Monsters.cs" />
-    <Compile Include="Objects.cs" />
-    <Compile Include="Stage.cs" />
     <Compile Include="Table.cs" />
-    <Compile Include="Tema.cs" />
-    <Compile Include="slowWrite.cs" />
-    <Compile Include="Fight.cs" />
-    <Compile Include="Hero.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="slowWrite.cs" />
+    <Compile Include="Hero.cs" />
     <Compile Include="heroes.cs" />
+    <Compile Include="Stage.cs" />
+    <Compile Include="Tema.cs" />
+    <Compile Include="Ambient.cs" />
+    <Compile Include="Objects.cs" />
+    <Compile Include="Fight.cs" />
+    <Compile Include="Monsters.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

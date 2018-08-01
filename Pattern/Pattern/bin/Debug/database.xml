@@ -22,6 +22,7 @@
     <password>holyshit</password>
     <Chars>
       <char class="Assassin">Robervalindo</char>
+      <char class="Mage">Robervalina</char>
     </Chars>
     <save />
   </User>
@@ -85,6 +86,22 @@
     <username>Rafael</username>
     <password>Romeu</password>
     <Chars />
+    <save />
+  </User>
+  <User>
+    <username>bob</username>
+    <password>hue</password>
+    <Chars>
+      <char class="Warrior" stage="1">Ryu</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>pelotao</username>
+    <password>jubileu</password>
+    <Chars>
+      <char class="Assassin" level="2">Tilmo</char>
+    </Chars>
     <save />
   </User>
 </Users>

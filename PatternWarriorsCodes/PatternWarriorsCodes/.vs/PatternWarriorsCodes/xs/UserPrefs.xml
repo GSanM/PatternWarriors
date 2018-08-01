@@ -1,5 +1,4 @@
-﻿<Properties StartupItem="PatternWarriorsCodes.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+﻿<Properties StartupConfiguration="{313B6470-98FB-4E9B-B045-B88D15D8A03E}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="Menu.cs">
     <Files>
       <File FileName="Menu.cs" Line="9" Column="1" />
@@ -7,8 +6,11 @@
       <File FileName="Fight.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.PatternWarriorsCodes PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>

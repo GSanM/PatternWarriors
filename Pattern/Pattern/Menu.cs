@@ -100,26 +100,43 @@ namespace Menu
 				XmlNode NodeUsername = node.SelectSingleNode("username");
 				if (NodeUsername.InnerText == user)
 				{
-					XmlNode NodePassw = node.SelectSingleNode("password");
-					if (NodePassw.InnerText == pass)
-					{
-						XmlNode NodeChars = node.SelectSingleNode("Chars");
-						XmlElement elementNewChar = doc.CreateElement(string.Empty, "char", string.Empty);
-						XmlAttribute attCharClass = doc.CreateAttribute("class");
-						attCharClass.Value = charclass;
-						elementNewChar.Attributes.SetNamedItem(attCharClass);
-						XmlAttribute attCharStage = doc.CreateAttribute("stage");
-						attCharStage.Value = "1";
-						elementNewChar.Attributes.SetNamedItem(attCharStage);
-						XmlText charNameText = doc.CreateTextNode(charname);
-						elementNewChar.AppendChild(charNameText);
-						NodeChars.AppendChild(elementNewChar);                        
-						break;
-					}
+					XmlNode NodeChars = node.SelectSingleNode("Chars/char");
+					XmlElement elementNewChar = doc.CreateElement(string.Empty, "char", string.Empty);
+					XmlAttribute attCharClass = doc.CreateAttribute("class");
+					attCharClass.Value = charclass;
+					elementNewChar.Attributes.SetNamedItem(attCharClass);
+					XmlAttribute attCharStage = doc.CreateAttribute("level");
+					attCharStage.Value = "1";
+					elementNewChar.Attributes.SetNamedItem(attCharStage);
+					XmlText charNameText = doc.CreateTextNode(charname);
+					elementNewChar.AppendChild(charNameText);
+					NodeChars.AppendChild(elementNewChar);                        
+					break;
+
 				}
 			}
 
             doc.Save("database.xml");
+		}
+
+        public void SalvaLevel(string username, int level)
+		{
+			XmlDocument doc = new XmlDocument();
+            doc.Load("database.xml");
+
+            XmlNodeList aNodes = doc.SelectNodes("/Users/User");
+            foreach (XmlNode node in aNodes)
+            {
+				XmlNode NodeUsername = node.SelectSingleNode("username");
+                if (NodeUsername.InnerText == username)
+                {
+                    XmlNode NodeChars = node.SelectSingleNode("Chars");
+                    foreach (XmlNode char_ in NodeChars)
+                    {
+						char_.Attributes["level"].Value = level.ToString();
+                    }
+                }
+			}
 		}
 
         //Load Menu
@@ -174,12 +191,14 @@ namespace Menu
 		}
 
         //Carrega Chars da conta
-		public Stack<string> LoadChars(string username)
+		public Hero LoadChars(string username)
 		{
 			XmlDocument doc = new XmlDocument();
             doc.Load("database.xml");
 			Stack <string> chars = new Stack<string>();
-
+			int n = 1;
+			List<XmlNode> charNodes = new List<XmlNode>();
+            
             XmlNodeList aNodes = doc.SelectNodes("/Users/User");
             foreach (XmlNode node in aNodes)
             {
@@ -189,12 +208,32 @@ namespace Menu
                     XmlNode NodeChars = node.SelectSingleNode("Chars");
                     foreach (XmlNode char_ in NodeChars)
 					{
-						chars.Push(char_.InnerText);
+						charNodes.Add(char_);
+						Console.WriteLine(n + " - " + char_.InnerText + " - " + char_.Attributes["class"].Value);
+						n++;
 					}
                 }
             }
 
-			return chars;
+			library.slowWrite("Select your char: ", Constants.TEXT_SPEED2, false);
+            
+			int input = Convert.ToInt32(Console.ReadLine());           
+
+			switch(charNodes[input-1].Attributes["class"].Value)
+			{
+				case "Warrior":
+					return new Warrior(charNodes[input-1].InnerText, Convert.ToInt32(charNodes[input-1].Attributes["level"].Value));
+                
+				case "Mage":
+					return new Mage(charNodes[input-1].InnerText, Convert.ToInt32(charNodes[input - 1].Attributes["level"].Value));
+
+				case "Assassin":
+					return new Assassin(charNodes[input-1].InnerText, Convert.ToInt32(charNodes[input - 1].Attributes["level"].Value));
+				
+				default:
+					return null;
+			}
+            
 		}
 
         //Cria uma nova conta
@@ -225,7 +264,7 @@ namespace Menu
 		}
 
         //Faz login em uma conta ja existente
-        public int Login()
+        public Hero Login()
 		{
 			string save = "noSave";
 
@@ -256,19 +295,22 @@ namespace Menu
 			switch(Int32.Parse(RespMenu))
 			{
 				case 1:
-					if(save == "fase1")
+					Hero resp = LoadChars(Username);
+					if (resp == null)
 					{
-						//Carregar fase 1	
+						library.slowWrite("No char found!", Constants.TEXT_SPEED1, true);
+						MenuPrincipal menuPrincipal1 = MenuPrincipal.Instance;
+                        menuPrincipal1.NewChar(this);
+						break;
 					}
-					else if(save == "fase2")
+					else 
 					{
-						//Carregar fase 2
+						return resp;
 					}
 
-					break;
 				case 2:
-					MenuPrincipal menuPrincipal = MenuPrincipal.Instance;
-					menuPrincipal.NewChar(this);
+					MenuPrincipal menuPrincipal2 = MenuPrincipal.Instance;
+					menuPrincipal2.NewChar(this);
 					break;
 				case 3:
 					Console.Clear();
@@ -276,8 +318,7 @@ namespace Menu
                     Environment.Exit(1);
                     break;
 			}
-            
-			return 1;
+			return null;
 		}
 
 	}
@@ -433,7 +474,7 @@ namespace Menu
             }
         }
 
-        public int NewChar(Conta conta)
+        public Hero NewChar(Conta conta)
 		{
 			string charname;
 			string charclass;
@@ -446,9 +487,9 @@ namespace Menu
             Console.WriteLine("");
 			library.slowWrite("Choose a class:", Constants.TEXT_SPEED2, true);
 
-            Hero Warrior = new Warrior("");
-            Hero Mage = new Mage("");
-            Hero Assassin = new Assassin("");
+            Hero Warrior = new Warrior("", 1);
+            Hero Mage = new Mage("", 1);
+            Hero Assassin = new Assassin("", 1);
 
             Warrior.showPresentation();
             Mage.showPresentation();
@@ -463,7 +504,12 @@ namespace Menu
 					charclass = "Assassin";
                     library.slowWrite("Creation succeed! Welcome to Assassins' World.", Constants.TEXT_SPEED2, true);
 					PrintHeroes.printAssassin ();
-					break;
+
+					conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
+
+                    this.ImprimeFala(1, charname);
+
+					return new Assassin(charname, 1);
                 }
 				else if (charclass == "Mage" || charclass == "mage" || charclass == "m" || charclass == "M")
                 {
@@ -471,7 +517,11 @@ namespace Menu
                     library.slowWrite("Creation succeed! Welcome to Mages' World.", Constants.TEXT_SPEED2, true);
 					PrintHeroes.printMage ();
 
-					break;
+					conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
+
+                    this.ImprimeFala(1, charname);
+
+					return new Mage(charname, 1);
                 }
 				else if (charclass == "Warrior" || charclass == "warrior" || charclass == "w" || charclass == "W")
                 {
@@ -479,21 +529,21 @@ namespace Menu
                     library.slowWrite("Creation succeed! Welcome to Warriors' World.", Constants.TEXT_SPEED2, true);
 					PrintHeroes.printWarrior ();
 
-					break;
+					conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
+
+                    this.ImprimeFala(1, charname);
+
+					return new Warrior(charname, 1);
                 }
 				else
 				{
 					Console.WriteLine("Incorret name! Try again");
 				}
 			}
-            conta.SalvaChar(conta.Username, conta.Senha, charname, charclass);
-            
-			this.ImprimeFala(1, charname);
-
-			return 1;
+     
 		}
 
-        public void SetChosed()
+        public Hero SetChosed()
 		{
 
 			library.slowWrite("\n> Select your option: ", Constants.TEXT_SPEED2, false);
@@ -506,35 +556,35 @@ namespace Menu
 					MenuPrincipal menuPrincipal = Instance;
 					nova.CriaConta();
 					Console.Clear();
-					menuPrincipal.NewChar(nova);
-                    //Colocar opcao de escolher char
-					break;
+				    return menuPrincipal.NewChar(nova);
 				case 2:
 					Conta nova2 = new Conta();
-					nova2.Login();
-					break;
+					return nova2.Login();
 				case 3:
 					Console.Clear();
 					library.slowWrite("Thank you for playing! Goodbye.", Constants.TEXT_SPEED3, true);
 					Environment.Exit(1);
 					break;
+				default:
+					return null;
 			}
-            
+			return null;
 		}
 
 
-       /* public static int Main()
+        public static int Main()
 		{
 			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
 			menuPrincipal.ImprimeMenu2();
-			menuPrincipal.SetChosed();
+         
+			Tema oTema = new Forest();
+			Hero oHero = menuPrincipal.SetChosed();
+            Stage oStage = new Stage(1, oTema, oHero);
+            oStage.createGraph();
+            oStage.startStage();
 
-            //Teste de Save
-			Save memoria = new Save();
-			Caretaker armazenador = new Caretaker(memoria);
-
-
-			/*
+			/* Save memoria = new Save();
+            Caretaker armazenador = new Caretaker(memoria);
 			memoria.SetState("Estado 1");
 			armazenador.SaveState();
 			Console.WriteLine(memoria.GetState());
@@ -544,10 +594,10 @@ namespace Menu
 
 			armazenador.RestoreState();
 			Console.WriteLine(memoria.GetState());
-            
+            */
           
 
 			return 0;
-		} */
+		}
 	}
 }

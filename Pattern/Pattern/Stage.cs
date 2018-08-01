@@ -246,16 +246,4 @@ namespace Library
 
 
     }
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Tema oTema = new Forest();
-			Hero oHero = new Mage ("Romeu");
-			Stage oStage = new Stage(1, oTema, oHero);
-            oStage.createGraph();
-            oStage.startStage();
-
-        }
-    }
 }

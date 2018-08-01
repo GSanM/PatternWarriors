@@ -1,0 +1,6 @@
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/obj/x86/Debug/Pattern.csprojResolveAssemblyReference.cache
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/obj/x86/Debug/Pattern.csproj.CoreCompileInputs.cache
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/obj/x86/Debug/Pattern.exe
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/bin/Debug/Pattern.exe
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/bin/Debug/Pattern.pdb
+/home/gabriel/Documents/PatternWarrior/Pattern/Pattern/obj/x86/Debug/Pattern.pdb

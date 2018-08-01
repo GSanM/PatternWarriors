@@ -131,6 +131,14 @@ namespace HeroSpace
 		{
 			spec_atk = sa;
 		}
+        public void addLevel()
+		{
+			level++;
+		}
+        public int getLevel()
+		{
+			return level;
+		}
 
         //Metodos de itens
 		public void ItemAtk(int item)
@@ -187,11 +195,11 @@ namespace HeroSpace
 
 	public class Warrior: Hero
 	{
-		public Warrior(string nome)
+		public Warrior(string nome, int l)
 		{
 			classe = "Warrior";
             name = nome += " The Grand Warrior";
-            level = 1;
+			level = l;
 
             description = "The Warrior is a strong and powerful class that should be choosed under a immeasurable certitude. With him, your path will can be hard as a rock, but he can handle it.";
 
@@ -247,11 +255,11 @@ namespace HeroSpace
 
 	public class Mage: Hero
 	{
-		public Mage(string nome)
+		public Mage(string nome, int l)
 		{
 			classe = "Mage";
 			name = nome += " The Reliable Mage";
-            level = 1;
+            level = l;
 
             description = "The Mage is a wise class that should be choosed carefully. A mage without control can be dangerous.";
 
@@ -306,11 +314,11 @@ namespace HeroSpace
 
 	public class Assassin: Hero
 	{
-		public Assassin(string nome)
+		public Assassin(string nome, int l)
         {
 			classe = "Assassin";
-            name = nome += "The Unstoppable Assasin";
-            level = 1;
+            name = nome += " The Unstoppable Assasin";
+            level = l;
 
             description = "The Assassin has a lot of damage but could be killed easily if don't take care.";
 

@@ -168,13 +168,14 @@ namespace Library
         private void setBossPosition()
         {
             int BossPosition = random.Next(0,graphSize);
+			BossPosition = 0;
             Ambient oAmbient = vertices[BossPosition].getAmbient();
             oAmbient.setBoss(true);
         }
 
         public void startStage()
         {
-            Console.WriteLine("PROLOGO");
+			library.slowWrite("PROLOGO",Constants.TEXT_SPEED2,true);
 			bool acabou = false;
 			while(acabou == false)
             {
@@ -182,18 +183,18 @@ namespace Library
 				{
 					acabou = true;
 				}
-                Console.Write("Você está em: ");
-                Console.WriteLine(vertex.getAmbient().getName());
-				Console.WriteLine (vertex.getAmbient ().getDescription ());
+				library.slowWrite("Você está em: ",Constants.TEXT_SPEED2,false);
+				library.slowWrite(vertex.getAmbient().getName(),Constants.TEXT_SPEED2,true);
+				library.slowWrite (vertex.getAmbient ().getDescription (),Constants.TEXT_SPEED2,true);
                 
-				Console.WriteLine("Suas opções são:");
+				library.slowWrite("Suas opções são:",Constants.TEXT_SPEED2,true);
                 
                 int i = 1;
-                Console.WriteLine("0 - Explorar");
+				library.slowWrite("0 - Explorar",Constants.TEXT_SPEED2,true);
                 foreach (Vertex<int> item in vertex.Neighbors)
                 {
-                    Console.Write(i + " - Ir para ");
-                    Console.WriteLine(item.getAmbient().getName());
+					library.slowWrite(i + " - Ir para ",Constants.TEXT_SPEED2,false);
+					library.slowWrite(item.getAmbient().getName(),Constants.TEXT_SPEED2,true);
                     i++;
                 }
 
@@ -204,13 +205,13 @@ namespace Library
                 }
                 if(option == 0)
                 {
-                    Console.WriteLine("EXPLORANDO");
+					library.slowWrite("Explorando ...",Constants.TEXT_SPEED2,true);
                     //Explorar ambiente
 					oHero = vertex.getAmbient().explorar(oHero);
                 }
                 else
                 {
-                    Console.WriteLine("Viajando ...");
+					library.slowWrite("Viajando ...",Constants.TEXT_SPEED2,true);
 					oTema.journey.setHero (oHero);
 					oHero = oTema.journey.explorar(oHero);
 					oTema.journey.setHero (null);
@@ -221,13 +222,10 @@ namespace Library
                     vertex = verticesDisponiveis[option-1];
 					vertex.getAmbient().setHero(oHero);
                 }
-				if (oHero.getLife () <= 0) {
+				if ( (oHero.getLife () <= 0) || (oHero.getPergaminho() == true) )
+				{
 					acabou = true;
 				}
-				if (acabou == true)
-                {
-                    Console.WriteLine("ACABOU KRL");
-                }
                 //showHeroPosition();
             }
         }
@@ -236,15 +234,15 @@ namespace Library
             int i = 0;
             foreach(Vertex<int> vertex in vertices)
             {
-                Console.Write(vertex.getAmbient().getName() + " " + i + " ");
+							library.slowWrite(vertex.getAmbient().getName() + " " + i + " ",Constants.TEXT_SPEED2,false);
                 i++;
                 if ( vertex.getAmbient().getHero() != null )
                 {
-                    Console.WriteLine("Hero is here!!");
+					library.slowWrite("Hero is here!!",Constants.TEXT_SPEED2,false);
                 }
                 else
                 {
-                    Console.WriteLine("");
+					library.slowWrite("",Constants.TEXT_SPEED2,true);
                 }
             }
         }
@@ -252,5 +250,5 @@ namespace Library
         #endregion
 
 
-    }
+	}
 }

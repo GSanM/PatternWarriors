@@ -148,7 +148,17 @@ namespace Library
 		{
 			int rand = random.Next (0, 2);
 			string monster = getRandomMonster();
-			if ( (monster != null) ) 
+			if (boss == true) 
+			{
+				BossFight oFight = new BossFight (monster, oHero);
+				oFight.startFight ();
+
+				if (oHero.getLife () > 0) 
+				{
+					oHero.setPergaminho (true);
+				}
+			}
+			else if ( (monster != null) ) 
 			{
 				if (rand == 0) 
 				{
@@ -193,7 +203,7 @@ namespace Library
                 else
                 {
 					this.oHero = AmbientList[option].explorar(oHero);
-					if (this.oHero.getLife () <= 0) 
+					if( (this.oHero.getLife () <= 0) || (this.oHero.getPergaminho() == true) )
 					{
 						return this.oHero;
 					}

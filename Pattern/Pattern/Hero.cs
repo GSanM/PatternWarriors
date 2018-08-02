@@ -52,6 +52,7 @@ namespace HeroSpace
 		protected bool ATKMode;
 		protected bool DEFMode;
 		protected bool RUNMode;
+		protected bool Pergaminho;
 
 		public void Attack()
 		{
@@ -101,6 +102,15 @@ namespace HeroSpace
 		{
 			return lifeSize;
 		}
+		public bool getPergaminho()
+		{
+			return Pergaminho;
+		}
+		public void setPergaminho(bool vf)
+		{
+			Pergaminho = vf;
+		}
+
 		public abstract int getATK();
         
 		public int getDEF()
@@ -208,6 +218,7 @@ namespace HeroSpace
             lifeSize = 200 * level;
             actualLife = lifeSize;
 			spec_atk = 0;
+			Pergaminho = false;
 
 			//Atk 1
             atk1.Id = 1;
@@ -267,6 +278,7 @@ namespace HeroSpace
             DEF = 10 * level;
             lifeSize = 130 * level;
 			actualLife = lifeSize;
+			Pergaminho = false;
 
 			//Atk 1
             atk1.Id = 1;
@@ -326,6 +338,7 @@ namespace HeroSpace
             DEF = 8 * level;
             lifeSize = 150 * level;
 			actualLife = lifeSize;
+			Pergaminho = false;
 
 			//Atk 1
             atk1.Id = 1;

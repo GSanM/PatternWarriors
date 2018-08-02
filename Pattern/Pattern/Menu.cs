@@ -574,12 +574,14 @@ namespace Menu
 
         public static int Main()
 		{
-			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
-			menuPrincipal.ImprimeMenu2();
+			//Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
+			//menuPrincipal.ImprimeMenu2();
          
 			Tema oTema = new Forest();
-			Hero oHero = menuPrincipal.SetChosed();
-            Stage oStage = new Stage(1, oTema, oHero);
+			//Hero oHero = menuPrincipal.SetChosed();
+			Hero oHero = new Mage("Rafael",2);
+            
+			Stage oStage = new Stage(1, oTema, oHero);
             oStage.createGraph();
             oStage.startStage();
 

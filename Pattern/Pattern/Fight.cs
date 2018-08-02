@@ -317,11 +317,21 @@ namespace Library
             }
         }
     }
-    public class Boss: Fight
+    public class BossFight: Fight
     {   
+		public BossFight(string monster, Hero oHero)
+		{
+			monsterName = monster;
+			hero = oHero;
+		}
         public override void createEnemies()
         {
-            
+			MonsterFactory oFactory = new MonsterFactory();      
+			Monster Enemy;
+			Enemy = oFactory.CreateMonster(monsterName, 5);
+			Enemy.setID(0);
+			EnemyList.Add(Enemy);            
+
         }   
         public override void roundEnemies(Monster Enemy)
         {

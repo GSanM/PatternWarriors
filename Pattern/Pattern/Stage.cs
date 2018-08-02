@@ -173,10 +173,11 @@ namespace Library
             oAmbient.setBoss(true);
         }
 
-        public void startStage()
+        public bool startStage()
         {
 			library.slowWrite("PROLOGO",Constants.TEXT_SPEED2,true);
 			bool acabou = false;
+			bool win = false;
 			while(acabou == false)
             {
 				if (oHero.getLife() <= 0)
@@ -225,9 +226,12 @@ namespace Library
 				if ( (oHero.getLife () <= 0) || (oHero.getPergaminho() == true) )
 				{
 					acabou = true;
+					if (oHero.getPergaminho())
+						win = true;
 				}
                 //showHeroPosition();
             }
+			return win;
         }
         public void showHeroPosition()
         {

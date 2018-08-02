@@ -110,6 +110,10 @@ namespace HeroSpace
 		{
 			Pergaminho = vf;
 		}
+        public void revive()
+		{
+			actualLife = lifeSize;
+		}
 
 		public abstract int getATK();
         

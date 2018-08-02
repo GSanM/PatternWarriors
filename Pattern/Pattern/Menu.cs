@@ -68,6 +68,23 @@ namespace Menu
 			doc.Save("database.xml");
 		}
 
+        public bool ContaExistente(string username)
+		{
+			XmlDocument doc = new XmlDocument();
+            doc.Load("database.xml");
+            
+            XmlNodeList aNodes = doc.SelectNodes("/Users/User");
+            foreach(XmlNode node in aNodes)
+            {
+                XmlNode NodeUsername = node.SelectSingleNode("username");
+                if (NodeUsername.InnerText == username)
+                {
+					return true;
+                }
+            }
+			return false;
+		}
+
         //Salva no arquivo XML o progresso do usuario
         public void Salvar(string username, string fase)
 		{
@@ -100,7 +117,7 @@ namespace Menu
 				XmlNode NodeUsername = node.SelectSingleNode("username");
 				if (NodeUsername.InnerText == user)
 				{
-					XmlNode NodeChars = node.SelectSingleNode("Chars/char");
+					XmlNode NodeChars = node.SelectSingleNode("Chars");
 					XmlElement elementNewChar = doc.CreateElement(string.Empty, "char", string.Empty);
 					XmlAttribute attCharClass = doc.CreateAttribute("class");
 					attCharClass.Value = charclass;
@@ -119,6 +136,7 @@ namespace Menu
             doc.Save("database.xml");
 		}
 
+        //Salva level ao passar de fase no XML
         public void SalvaLevel(string username, int level)
 		{
 			XmlDocument doc = new XmlDocument();
@@ -157,6 +175,8 @@ namespace Menu
 		{
 			bool found = false;
 			string answer = "noSave";
+			if (!File.Exists("database.xml"))
+                this.CriaXml();
 			XmlDocument doc = new XmlDocument();
             doc.Load("database.xml");
 
@@ -238,23 +258,48 @@ namespace Menu
 
         //Cria uma nova conta
         public int CriaConta()
-		{
+		{            
 			library.slowWrite("Welcome to Pattern Warriors! Let's create an account for you.", Constants.TEXT_SPEED2, true);
 			library.slowWrite("Username: ", Constants.TEXT_SPEED2, false);
-			Username = Console.ReadLine();
-			library.slowWrite("Password: ", Constants.TEXT_SPEED2, false);
-			while (true)
+            Username = Console.ReadLine();
+            library.slowWrite("Password: ", Constants.TEXT_SPEED2, false);
+            while (true)
             {
                 var key = System.Console.ReadKey(true);
                 if (key.Key == ConsoleKey.Enter)
                     break;
-				if (key.Key == ConsoleKey.Backspace)
-					Senha.Remove(Senha.Length - 1);
-				else
+                if (key.Key == ConsoleKey.Backspace)
+                    Senha.Remove(Senha.Length - 1);
+                else
                     Senha += key.KeyChar;
-				Console.Write("*");
+                Console.Write("*");
             }
 
+			//Salvar no arquivo
+            if (!File.Exists("database.xml"))
+                this.CriaXml();
+
+			while(ContaExistente(Username))
+			{
+				Console.WriteLine("");
+				library.slowWrite("Username already exists! Try another one.", Constants.TEXT_SPEED2, true);
+				Senha = "";
+                library.slowWrite("Username: ", Constants.TEXT_SPEED2, false);
+                Username = Console.ReadLine();
+                library.slowWrite("Password: ", Constants.TEXT_SPEED2, false);
+                while (true)
+                {
+                    var key = System.Console.ReadKey(true);
+                    if (key.Key == ConsoleKey.Enter)
+                        break;
+                    if (key.Key == ConsoleKey.Backspace)
+                        Senha.Remove(Senha.Length - 1);
+                    else
+                        Senha += key.KeyChar;
+                    Console.Write("*");
+                }
+			}
+            
 			//Salvar no arquivo
 			if (!File.Exists("database.xml"))
 			    this.CriaXml();
@@ -325,12 +370,12 @@ namespace Menu
 
 	public class Save //Memento utilizado para salvar estados
 	{
-		private string State;
+		private int State;
 
 		public class Memento
 		{
-			private string state;
-			public string State
+			private int state;
+			public int State
 			{
 				get
 				{
@@ -338,18 +383,18 @@ namespace Menu
 				}
 			}
 
-			public Memento(string s)
+			public Memento(int s)
 			{
 				state = s;
 			}
 		}
 
-		public void SetState(string s)
+		public void SetState(int s)
 		{
 			State = s;
 		}
 
-        public string GetState()
+        public int GetState()
 		{
 			return State;
 		}
@@ -416,17 +461,6 @@ namespace Menu
 					return instance;
 				}
 			}
-		}
-
-        public void ImprimeMenu()
-		{
-			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1, true );
-			library.slowWrite( "|||| Pattern Warriors ||||", Constants.TEXT_SPEED2, true );
-			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1, true );
-			library.slowWrite( "|||||||| 1 Start  ||||||||", Constants.TEXT_SPEED2, true );
-			library.slowWrite( "|||||||| 2 Load   ||||||||", Constants.TEXT_SPEED2, true );
-			library.slowWrite( "|||||||| 3 Quit   ||||||||", Constants.TEXT_SPEED2, true );
-			library.slowWrite( "||||||||||||||||||||||||||", Constants.TEXT_SPEED1, true );
 		}
 
 		public void ImprimeMenu2()
@@ -571,34 +605,55 @@ namespace Menu
 			return null;
 		}
 
+        public bool TryAgain()
+		{
+			int op;
+
+            library.slowWrite("Try again?", Constants.TEXT_SPEED3, true);
+            library.slowWrite("1 - Yes", Constants.TEXT_SPEED3, true);
+            library.slowWrite("2 - No", Constants.TEXT_SPEED3, true);
+			op = Convert.ToInt32(Console.ReadLine());
+
+			switch (op)
+			{
+				case 2:
+					Console.Clear();
+                    library.slowWrite("Thank you for playing! Goodbye.", Constants.TEXT_SPEED3, true);
+                    Environment.Exit(1);
+					return false;
+				default:
+					return true;
+			}        
+        }
 
         public static int Main()
 		{
-			//Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
-			//menuPrincipal.ImprimeMenu2();
+			bool win = false;
+			int state = 1;
+
+			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
+			menuPrincipal.ImprimeMenu2();
          
 			Tema oTema = new Forest();
-			//Hero oHero = menuPrincipal.SetChosed();
-			Hero oHero = new Mage("Rafael",2);
+			Hero oHero = menuPrincipal.SetChosed();
             
-			Stage oStage = new Stage(1, oTema, oHero);
-            oStage.createGraph();
-            oStage.startStage();
-
-			/* Save memoria = new Save();
+			Save memoria = new Save();
             Caretaker armazenador = new Caretaker(memoria);
-			memoria.SetState("Estado 1");
-			armazenador.SaveState();
-			Console.WriteLine(memoria.GetState());
+            memoria.SetState(state);
 
-			memoria.SetState("Estado 2");
-			Console.WriteLine(memoria.GetState());
+			while(!win)
+			{
+				armazenador.SaveState();
+				oHero.revive();
+				Stage oStage = new Stage(state, oTema, oHero);
 
-			armazenador.RestoreState();
-			Console.WriteLine(memoria.GetState());
-            */
-          
+				//Inicia prologo
+				oStage.createGraph();
+				win = oStage.startStage();
+				menuPrincipal.TryAgain();
 
+			}
+            
 			return 0;
 		}
 	}

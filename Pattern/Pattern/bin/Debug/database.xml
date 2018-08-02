@@ -1,106 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Users>
   <User>
-    <username>gsanm</username>
-    <password>ragatanga</password>
+    <username>gabriel</username>
+    <password>moraes</password>
     <Chars>
-      <char />
+      <char class="Assassin" level="1">Gorh</char>
     </Chars>
     <save />
   </User>
   <User>
-    <username>bozo</username>
-    <password>holy</password>
-    <Chars>
-      <char />
-      <char>Malaquias</char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>rob</username>
-    <password>holyshit</password>
-    <Chars>
-      <char class="Assassin">Robervalindo</char>
-      <char class="Mage">Robervalina</char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>Romeu</password>
-    <Chars>
-      <char class="Mage" stage="1">Rafael</char>
-      <char class="Mage" stage="1">Rafael</char>
-      <char class="Warrior" stage="1">Rafael</char>
-      <char class="Warrior" stage="1">Rafael</char>
-      <char class="Mage" stage="1">Rafael</char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>romeu</password>
-    <Chars>
-      <char class="Mage" stage="1">Rafael</char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>
-    </username>
-    <password>
-    </password>
+    <username>thulio</username>
+    <password>martins</password>
     <Chars />
     <save />
   </User>
   <User>
-    <username>
-    </username>
-    <password>1</password>
+    <username>gabriel_</username>
+    <password>moraes</password>
     <Chars>
-      <char class="Mage" stage="1">
-      </char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>Romeu</password>
-    <Chars />
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>Romeu</password>
-    <Chars />
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>Romeu</password>
-    <Chars />
-    <save />
-  </User>
-  <User>
-    <username>Rafael</username>
-    <password>Romeu</password>
-    <Chars />
-    <save />
-  </User>
-  <User>
-    <username>bob</username>
-    <password>hue</password>
-    <Chars>
-      <char class="Warrior" stage="1">Ryu</char>
-    </Chars>
-    <save />
-  </User>
-  <User>
-    <username>pelotao</username>
-    <password>jubileu</password>
-    <Chars>
-      <char class="Assassin" level="2">Tilmo</char>
+      <char class="Warrior" level="1">Robervaldo</char>
     </Chars>
     <save />
   </User>

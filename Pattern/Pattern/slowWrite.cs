@@ -9,10 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Library
 {
-	public static class library
+	public class library
 	{
 		/**
         * slowWrite
@@ -24,6 +25,7 @@ namespace Library
         * @return void
         * 
         */
+
 		public static void slowWrite(string message, int delay, bool endline)
 		{
 			foreach (char letter in message)

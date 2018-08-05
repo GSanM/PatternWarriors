@@ -9,7 +9,7 @@ using System.Threading;
 
 static class Constants
 {
-	public const int TEXT_SPEED_MENU = 25;
+	public const int TEXT_SPEED_MENU = 5;
 	public const int TEXT_SPEED1 = 20;
 	public const int TEXT_SPEED2 = 50;
 	public const int TEXT_SPEED3 = 100;

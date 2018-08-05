@@ -28,10 +28,10 @@ namespace Library
         
         public Fight(){}
 
-        public virtual int startFight()
+		public virtual int startFight(Ambient ambient)
         {
             hero.setCombo(0);
-            createEnemies();
+			createEnemies(ambient);
 
             while(true)
             {
@@ -54,7 +54,7 @@ namespace Library
                 removeDeads();
             }
         }
-        public abstract void createEnemies();
+		public abstract void createEnemies(Ambient ambient);
         
         public virtual void showEnemies()
         {
@@ -261,15 +261,17 @@ namespace Library
 			hero = oHero;
 
 		}
-        public override void createEnemies()
-        {
+		public override void createEnemies(Ambient ambient)
+		{
             MonsterFactory oFactory = new MonsterFactory();      
             Monster Enemy;
             int rand = random.Next(5,8);
 
             for (int i = 0; i < rand; i++)
             {
-				Enemy = oFactory.CreateMonster(monsterName, 1);
+				string generatedMonster = ambient.getRandomMonster();
+
+				Enemy = oFactory.CreateMonster(generatedMonster, 1);
                 Enemy.setID(i);
                 EnemyList.Add(Enemy);            
                 System.Threading.Thread.Sleep(100);
@@ -324,7 +326,7 @@ namespace Library
 			monsterName = monster;
 			hero = oHero;
 		}
-        public override void createEnemies()
+		public override void createEnemies(Ambient ambient)
         {
 			MonsterFactory oFactory = new MonsterFactory();      
 			Monster Enemy;

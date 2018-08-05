@@ -650,7 +650,8 @@ namespace Menu
 				//Inicia prologo
 				oStage.createGraph();
 				win = oStage.startStage();
-				menuPrincipal.TryAgain();
+                if(!win)
+				    menuPrincipal.TryAgain();
 
 			}
             

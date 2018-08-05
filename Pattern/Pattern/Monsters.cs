@@ -25,12 +25,24 @@ namespace Library
 			Monster oMonster = null;
 			switch (name)
             {
-                case "GigantSpider":
+                case "Gigant Spider":
                     oMonster = new GigantSpider(level);
                 break;
                 case "Zombie":
                     oMonster = new Zombie(level);
                 break;
+				case "Zombie Bear":
+					oMonster = new ZombieBear(level);
+					break;
+				case "Big Foot":
+					oMonster = new BigFoot(level);
+                    break;
+				case "Big Mosquito":
+					oMonster = new BigMosquito(level);
+                    break;
+				case "Chupacabra":
+					oMonster = new Chupacabra(level);
+                    break;
                 default:
                 Console.WriteLine("não foi possivel criar monstro");
                 break;
@@ -173,4 +185,80 @@ namespace Library
             RUNMode = false;
         }
 	}
+
+	public class ZombieBear : Monster
+    {
+        public ZombieBear(int level)
+        {
+            name = "Zombie Bear";
+            this.level = level;
+
+            ATK = random.Next(10, 25) * level;
+            DEF = random.Next(0, 20) * level;
+
+            lifeSize = 60 * level;
+            actualLife = lifeSize;
+
+            ATKMode = false;
+            DEFMode = false;
+            RUNMode = false;
+        }
+    }
+
+	public class BigFoot : Monster
+    {
+        public BigFoot(int level)
+        {
+            name = "Big Foot";
+            this.level = level;
+
+            ATK = random.Next(5, 30) * level;
+            DEF = random.Next(0, 15) * level;
+
+            lifeSize = 30 * level;
+            actualLife = lifeSize;
+
+            ATKMode = false;
+            DEFMode = false;
+            RUNMode = false;
+        }
+    }
+
+	public class BigMosquito : Monster
+    {
+		public BigMosquito(int level)
+        {
+            name = "Big Mosquito";
+            this.level = level;
+
+            ATK = random.Next(20, 30) * level;
+            DEF = random.Next(0, 5) * level;
+
+            lifeSize = 10 * level;
+            actualLife = lifeSize;
+
+            ATKMode = false;
+            DEFMode = false;
+            RUNMode = false;
+        }
+    }
+
+	public class Chupacabra : Monster
+    {
+		public Chupacabra(int level)
+        {
+            name = "Chupacabra";
+            this.level = level;
+
+            ATK = random.Next(20, 40) * level;
+            DEF = random.Next(0, 5) * level;
+
+            lifeSize = 30 * level;
+            actualLife = lifeSize;
+
+            ATKMode = false;
+            DEFMode = false;
+            RUNMode = false;
+        }
+    }
 }

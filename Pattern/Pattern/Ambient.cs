@@ -42,7 +42,7 @@ namespace Library
     }
     public abstract class Ambient: Icomposite
     {
-        /*
+		/*
          * Lista de Monstros
          * Boss
          * Ambientes internos (Composite)
@@ -51,9 +51,26 @@ namespace Library
          * Descrição
          * Objetos
          */
-        #region Declarations
+		#region Declarations
 
-        protected Random random = new Random();
+        //Singleton para numero randomico
+		private static Random random = null;
+        private static readonly object lock_ = new object();
+
+        public static Random Random_
+        {
+            get
+            {
+                lock (lock_)
+                {
+                    if (random == null)
+                    {
+                        random = new Random(1);
+                    }
+                    return random;
+                }
+            }
+        }
 
         protected string name;
         protected string description;
@@ -86,7 +103,7 @@ namespace Library
         {
 			if (monstersList.Count != 0) {
 				string monster = null;
-				monster = monstersList [random.Next (0, monstersList.Count)];
+				monster = monstersList [Random_.Next (0, monstersList.Count)];
 				return monster;
 			} 
 			else
@@ -100,7 +117,7 @@ namespace Library
 			{
 				return null;
 			}
-            int index = random.Next(0, ListaDeUpgrades.Count);
+            int index = Random_.Next(0, ListaDeUpgrades.Count);
             return ListaDeUpgrades[index];
         }
 
@@ -110,7 +127,7 @@ namespace Library
 			{
 				return null;
 			}
-            int index = random.Next(0, ListaDeStuff.Count);
+            int index = Random_.Next(0, ListaDeStuff.Count);
             return ListaDeStuff[index];
         }
         public virtual void setBoss(bool boss)
@@ -121,7 +138,7 @@ namespace Library
             }
             else
             {
-                int index = random.Next(-1,AmbientList.Count);
+                int index = Random_.Next(-1,AmbientList.Count);
                 if(index == -1)
                 {
                     this.boss = boss;
@@ -146,12 +163,12 @@ namespace Library
         }
 		public virtual bool battle()
 		{
-			int rand = random.Next (0, 2);
+			int rand = Random_.Next (0, 2);
 			string monster = getRandomMonster();
 			if (boss == true) 
 			{
 				BossFight oFight = new BossFight (monster, oHero);
-				oFight.startFight ();
+				oFight.startFight (this);
 
 				if (oHero.getLife () > 0) 
 				{
@@ -162,9 +179,9 @@ namespace Library
 			{
 				if (rand == 0) 
 				{
-					Console.WriteLine ("Ao explorar o local voce se depara com " + monster);
+					Console.WriteLine ("Exploring the place you see a group of monsters");
 					normalFight oFight = new normalFight (monster, oHero);
-					oFight.startFight ();
+					oFight.startFight (this);
 					if (oHero.getLife () < 1) 
 					{
 						return true;
@@ -180,21 +197,21 @@ namespace Library
 		public virtual Hero explorar(Hero oHero)
         {
 			this.oHero = oHero;
-            Console.WriteLine("Voce entrou na " + name);
+            Console.WriteLine("You entered at " + name);
 			bool sair = battle ();
 			//sortear uns objetos
 
 			while(sair == false)
             {
-                Console.WriteLine("Suas opção são: ");
+                Console.WriteLine("Your options: ");
                 int i = 0;
                 foreach (Ambient item in AmbientList)
                 {
                     Console.Write(i + " - ");
-                    Console.WriteLine("Explorar " + item.getName());
+                    Console.WriteLine("Explore " + item.getName());
                     i++;
                 }
-                Console.WriteLine(i+ " - Sair");
+                Console.WriteLine(i+ " - Leave");
                 int option = Convert.ToInt32(Console.ReadLine());
                 if(option == i)
                 {
@@ -230,18 +247,23 @@ namespace Library
             boss = false;
             name = "journey";
             description = "journey DESCRIPTION";
-            monstersList.Add("GigantSpider");
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+			monstersList.Add("Big Mosquito");
+			monstersList.Add("Big Foot");
+			monstersList.Add("Chupacabra");
         }
 		public override bool battle()
 		{
-			int rand = random.Next (0, 2);
+			int rand = Random_.Next (0, 2);
 			string monster = getRandomMonster();
 			if (monster != null) 
 			{
 				if (rand == 0) {
-					Console.WriteLine ("Em meio a sua viagem você é cercado pelos inimigos");				
+					Console.WriteLine ("You got surrounded by enemies!");				
 					normalFight oFight = new normalFight (monster, oHero);
-					oFight.startFight ();
+					oFight.startFight (this);
 
 					if (oHero.getLife () < 1) 
 					{
@@ -255,7 +277,7 @@ namespace Library
 		public override Hero explorar(Hero oHero)
         {
 			this.oHero = oHero;
-            Console.WriteLine("Viajando ...");
+            Console.WriteLine("Traveling ...");
 			battle ();
 
 			return this.oHero;
@@ -267,10 +289,14 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Entrada Da Floresta Maldita";
-            description = "Entrada Da Floresta Maldita DESCRIPTION";
-            monstersList.Add("GigantSpider");
-			monstersList.Add ("Zombie");
+            name = "Cursed Forest Entry";
+			description = "Cursed Forest Entry DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
     public class Cave:Ambient
@@ -283,7 +309,9 @@ namespace Library
             AmbientList.Add(new MatadouroDasAranhas());
             AmbientList.Add(new CorredorCaverna());
             description = "Cave DESCRIPTION";
-            //monstersList.Add("GigantSpider");
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
         }
     }
     public class MatadouroDasAranhas:Ambient
@@ -292,9 +320,9 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "MatadouroDasAranhas";
-            description = "MatadouroDasAranhas DESCRIPTION";
-            //monstersList.Add("GigantSpider");
+			name = "Spider's Slaughterhouse";
+			description = "Spider's Slaughterhouse DESCRIPTION";
+			monstersList.Add("Gigant Spider");
         }
     }
     public class CorredorCaverna:Ambient
@@ -304,9 +332,12 @@ namespace Library
             oHero = null;
             boss = false;
             AmbientList.Add(new Tumulo());
-            name = "CorredorCaverna";
-            description = "Corredor Caverna DESCRIPTION";
-            //monstersList.Add("GigantSpider");
+            name = "Cave's Corridor";
+            description = "Cave's Corridor DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
     public class Tumulo:Ambient
@@ -315,9 +346,10 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Tumulo";
-            description = "Tumulo DESCRIPTION";
+            name = "Grave";
+            description = "Grave DESCRIPTION";
             monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
         }
     }
     
@@ -327,9 +359,11 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "TreeOfLife";
-            description = "TreeOfLife DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Tree Of Life";
+            description = "Tree Of Life DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
         }
     }
     public class Swamp:Ambient
@@ -340,7 +374,8 @@ namespace Library
             boss = false;
             name = "Swamp";
             description = "Swamp Description";
-            monstersList.Add("GigantSpider");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
 
@@ -350,9 +385,12 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "BosqueAssombrado";
-            description = "BosqueAssombrado DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Cursed Grove";
+            description = "Cursed Grove DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
         }
     }
     public class BigTree:Ambient
@@ -361,9 +399,10 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "BigTree";
-            description = "BigTree DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Big Tree";
+            description = "Big Tree DESCRIPTION";
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
         }
     }
 
@@ -373,9 +412,10 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "LagoSul";
-            description = "LagoSul DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "South Lake";
+            description = "South Lake DESCRIPTION";
+			monstersList.Add("Big Mosquito");
+            monstersList.Add("Chupacabra");
         }
     }
     public class LagoNordeste:Ambient
@@ -385,9 +425,11 @@ namespace Library
             oHero = null;
             boss = false;
             AmbientList.Add(new Ilha());
-            name = "LagoNordeste";
-            description = "LagoNordeste DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Northeast Lake";
+            description = "Northeast Lake DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Big Foot");
         }
     }
     public class Ilha:Ambient
@@ -396,9 +438,10 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Ilha";
-            description = "Ilha DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Island";
+            description = "Island DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Chupacabra");
         }
     }
     
@@ -408,12 +451,14 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "CabanaAbandonada";
+            name = "Abandoned Shack";
             AmbientList.Add(new Sala());
 
-            description = "CabanaAbandonada DESCRIPTION";
-            monstersList.Add("GigantSpider");
-        }
+            description = "Abandoned Shack DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");        }
     }
     public class Sala:Ambient
     {
@@ -421,12 +466,13 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Sala";
+            name = "Room";
             AmbientList.Add(new Escadas());
             AmbientList.Add(new Corredor());
             AmbientList.Add(new Porao());
-            description = "Sala DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            description = "Room DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
         }
     }
     public class Corredor:Ambient
@@ -435,12 +481,14 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Corredor";
+            name = "Corridor";
             AmbientList.Add(new Banheiro());
             AmbientList.Add(new Cozinha());
             AmbientList.Add(new Quarto());
-            description = "Corredor DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            description = "Corridor DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Big Mosquito");
         }
     }
     public class Porao:Ambient
@@ -449,9 +497,11 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Porao";
-            description = "Porao DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Basement";
+            description = "Basement DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Big Mosquito");
         }
     }
     public class Escadas:Ambient
@@ -460,10 +510,13 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Escadas";
+            name = "Stairs";
             AmbientList.Add(new Sotao());
-            description = "Escadas DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            description = "Stairs DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
         }
     }
     public class Sotao:Ambient
@@ -472,9 +525,12 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Sotao";
-            description = "Sotao DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Attic";
+            description = "Attic DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
         }
     }
     public class Cozinha:Ambient
@@ -483,9 +539,13 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Cozinha";
-            description = "Cozinha DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Kitchen";
+            description = "Kitchen DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Chupacabra");
         }
     }
 
@@ -495,9 +555,13 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Quarto";
-            description = "Quarto DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Bedroom";
+            description = "Bedroom DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
 
@@ -507,9 +571,12 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Banheiro";
-            description = "Banheiro DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Bathroom";
+            description = "Bathroom DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
 
@@ -519,10 +586,12 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Acampamento";
+            name = "Camp";
             AmbientList.Add(new Barraca());
-            description = "Acampamento DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            description = "Camp DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
     public class Barraca:Ambient
@@ -531,9 +600,14 @@ namespace Library
         {
             oHero = null;
             boss = false;
-            name = "Barraca";
-            description = "Barraca DESCRIPTION";
-            monstersList.Add("GigantSpider");
+            name = "Tent";
+            description = "Tent DESCRIPTION";
+			monstersList.Add("Gigant Spider");
+            monstersList.Add("Zombie");
+            monstersList.Add("Zombie Bear");
+            monstersList.Add("Big Mosquito");
+            monstersList.Add("Big Foot");
+            monstersList.Add("Chupacabra");
         }
     }
     

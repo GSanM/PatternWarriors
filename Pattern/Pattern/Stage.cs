@@ -168,14 +168,14 @@ namespace Library
         private void setBossPosition()
         {
             int BossPosition = random.Next(0,graphSize);
-			BossPosition = 0;
+			//BossPosition = 0;
             Ambient oAmbient = vertices[BossPosition].getAmbient();
             oAmbient.setBoss(true);
         }
 
         public bool startStage()
         {
-			library.slowWrite("PROLOGO",Constants.TEXT_SPEED2,true);
+			library.slowWrite("PROLOGUE",Constants.TEXT_SPEED2,true);
 			bool acabou = false;
 			bool win = false;
 			while(acabou == false)
@@ -184,17 +184,17 @@ namespace Library
 				{
 					acabou = true;
 				}
-				library.slowWrite("Você está em: ",Constants.TEXT_SPEED2,false);
+				library.slowWrite("You are at: ",Constants.TEXT_SPEED2,false);
 				library.slowWrite(vertex.getAmbient().getName(),Constants.TEXT_SPEED2,true);
 				library.slowWrite (vertex.getAmbient ().getDescription (),Constants.TEXT_SPEED2,true);
                 
-				library.slowWrite("Suas opções são:",Constants.TEXT_SPEED2,true);
+				library.slowWrite("Your options:",Constants.TEXT_SPEED2,true);
                 
                 int i = 1;
-				library.slowWrite("0 - Explorar",Constants.TEXT_SPEED2,true);
+				library.slowWrite("0 - Explore",Constants.TEXT_SPEED2,true);
                 foreach (Vertex<int> item in vertex.Neighbors)
                 {
-					library.slowWrite(i + " - Ir para ",Constants.TEXT_SPEED2,false);
+					library.slowWrite(i + " - Go to ",Constants.TEXT_SPEED2,false);
 					library.slowWrite(item.getAmbient().getName(),Constants.TEXT_SPEED2,true);
                     i++;
                 }
@@ -206,13 +206,13 @@ namespace Library
                 }
                 if(option == 0)
                 {
-					library.slowWrite("Explorando ...",Constants.TEXT_SPEED2,true);
+					library.slowWrite("Exploring ...",Constants.TEXT_SPEED2,true);
                     //Explorar ambiente
 					oHero = vertex.getAmbient().explorar(oHero);
                 }
                 else
                 {
-					library.slowWrite("Viajando ...",Constants.TEXT_SPEED2,true);
+					library.slowWrite("Traveling ...",Constants.TEXT_SPEED2,true);
 					oTema.journey.setHero (oHero);
 					oHero = oTema.journey.explorar(oHero);
 					oTema.journey.setHero (null);

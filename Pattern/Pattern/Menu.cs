@@ -442,24 +442,23 @@ namespace Menu
 	}
 
     //Singleton no Menu Principal para existir apenas uma instância de menu.
-	sealed class MenuPrincipal
+	class MenuPrincipal
 	{
 		private static MenuPrincipal instance = null;
-		private static readonly object padlock = new object();
+        
+		private MenuPrincipal(){}
+
 		private int chosed;
 
 		public static MenuPrincipal Instance
 		{
 			get 
-			{
-				lock(padlock)
+			{ 
+				if(instance == null)
 				{
-					if(instance == null)
-					{
-						instance = new MenuPrincipal();
-					}
-					return instance;
+					instance = new MenuPrincipal();
 				}
+				return instance; 
 			}
 		}
 
@@ -631,7 +630,8 @@ namespace Menu
 			bool win = false;
 			int state = 1;
 
-			Menu.MenuPrincipal menuPrincipal = new MenuPrincipal();
+			MenuPrincipal menuPrincipal = Instance;
+                      
 			menuPrincipal.ImprimeMenu2();
          
 			Tema oTema = new Forest();
@@ -641,6 +641,7 @@ namespace Menu
             Caretaker armazenador = new Caretaker(memoria);
             memoria.SetState(state);
 
+            //Fase 1
 			while(!win)
 			{
 				armazenador.SaveState();
@@ -652,8 +653,9 @@ namespace Menu
 				win = oStage.startStage();
                 if(!win)
 				    menuPrincipal.TryAgain();
-
 			}
+			library.slowWrite("You got the SINGLETON scroll. The Singleton is a powerful pattern that lock an object to be unique on the context.", Constants.TEXT_SPEED2, true);
+			library.slowWrite("End of Chapter 1.", Constants.TEXT_SPEED2, true);
             
 			return 0;
 		}

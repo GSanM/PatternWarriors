@@ -30,4 +30,12 @@
     </Chars>
     <save />
   </User>
+  <User>
+    <username>gargamel</username>
+    <password>silvra</password>
+    <Chars>
+      <char class="Mage" level="1">Gargamel</char>
+    </Chars>
+    <save />
+  </User>
 </Users>

@@ -25,8 +25,8 @@ namespace Library
 			Monster oMonster = null;
 			switch (name)
             {
-                case "Gigant Spider":
-                    oMonster = new GigantSpider(level);
+                case "Giant Spider":
+                    oMonster = new GiantSpider(level);
                 break;
                 case "Zombie":
                     oMonster = new Zombie(level);
@@ -149,11 +149,11 @@ namespace Library
             Console.WriteLine("DEF: " + DEF);
         }
 	}
-    public class GigantSpider: Monster
+    public class GiantSpider: Monster
 	{
-		public GigantSpider(int level)
+		public GiantSpider(int level)
         {
-            name = "Gigant Spider";
+            name = "Giant Spider";
             this.level = level;    
 
             ATK = random.Next(10,20) * level;

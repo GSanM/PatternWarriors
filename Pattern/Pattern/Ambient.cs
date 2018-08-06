@@ -247,7 +247,7 @@ namespace Library
             boss = false;
             name = "journey";
             description = "journey DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
 			monstersList.Add("Big Mosquito");
@@ -290,8 +290,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Cursed Forest Entry";
-			description = "Cursed Forest Entry DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+			description = "A dark entry to a cursed forest.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");
@@ -308,8 +308,8 @@ namespace Library
             name = "Cave";
             AmbientList.Add(new MatadouroDasAranhas());
             AmbientList.Add(new CorredorCaverna());
-            description = "Cave DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "A deep cave with powerful enemies inside.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
         }
@@ -321,8 +321,8 @@ namespace Library
             oHero = null;
             boss = false;
 			name = "Spider's Slaughterhouse";
-			description = "Spider's Slaughterhouse DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+			description = "I would not get in there. Spiders are already creepy, imagine giant ones.";
+			monstersList.Add("Giant Spider");
         }
     }
     public class CorredorCaverna:Ambient
@@ -333,8 +333,8 @@ namespace Library
             boss = false;
             AmbientList.Add(new Tumulo());
             name = "Cave's Corridor";
-            description = "Cave's Corridor DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "As dark as the rest of the cave.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
             monstersList.Add("Chupacabra");
@@ -347,7 +347,7 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Grave";
-            description = "Grave DESCRIPTION";
+            description = "I will not doubt of something getting out of there.";
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
         }
@@ -360,8 +360,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Tree Of Life";
-            description = "Tree Of Life DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+			description = "It is strange a lot of monsters on a Life Tree;";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
         }
@@ -373,7 +373,7 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Swamp";
-            description = "Swamp Description";
+            description = "Watch out! You don't know what could appear.";
             monstersList.Add("Big Foot");
             monstersList.Add("Chupacabra");
         }
@@ -386,8 +386,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Cursed Grove";
-            description = "Cursed Grove DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Is this the forest? I think i'm lost.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
@@ -400,7 +400,7 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Big Tree";
-            description = "Big Tree DESCRIPTION";
+            description = "You can find big monsters in here.";
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
         }
@@ -413,7 +413,7 @@ namespace Library
             oHero = null;
             boss = false;
             name = "South Lake";
-            description = "South Lake DESCRIPTION";
+            description = "How much creatures can live on a lake?";
 			monstersList.Add("Big Mosquito");
             monstersList.Add("Chupacabra");
         }
@@ -426,8 +426,8 @@ namespace Library
             boss = false;
             AmbientList.Add(new Ilha());
             name = "Northeast Lake";
-            description = "Northeast Lake DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "A big lake with more than you can imagine in it.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Big Foot");
         }
@@ -439,8 +439,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Island";
-            description = "Island DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Can you live at an island with Chupacabra?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Chupacabra");
         }
     }
@@ -454,8 +454,8 @@ namespace Library
             name = "Abandoned Shack";
             AmbientList.Add(new Sala());
 
-            description = "Abandoned Shack DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Why someone abandoned this?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");        }
@@ -470,8 +470,8 @@ namespace Library
             AmbientList.Add(new Escadas());
             AmbientList.Add(new Corredor());
             AmbientList.Add(new Porao());
-            description = "Room DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "A common room.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
         }
     }
@@ -485,8 +485,8 @@ namespace Library
             AmbientList.Add(new Banheiro());
             AmbientList.Add(new Cozinha());
             AmbientList.Add(new Quarto());
-            description = "Corridor DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Dark corridor. You can barely see.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Big Mosquito");
         }
@@ -498,8 +498,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Basement";
-            description = "Basement DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Are you brave enough to enter there?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Big Mosquito");
         }
@@ -512,8 +512,8 @@ namespace Library
             boss = false;
             name = "Stairs";
             AmbientList.Add(new Sotao());
-            description = "Stairs DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "A long flight of stairs.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");
@@ -526,8 +526,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Attic";
-            description = "Attic DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Strange things happen at an attic.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");
@@ -540,8 +540,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Kitchen";
-            description = "Kitchen DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "You can cook on the kitchen. Or you can be cooked...";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");
@@ -556,8 +556,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Bedroom";
-            description = "Bedroom DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Let's sleep?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
@@ -572,8 +572,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Bathroom";
-            description = "Bathroom DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+			description = "Oh you definitely got to pee.";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Big Mosquito");
             monstersList.Add("Big Foot");
             monstersList.Add("Chupacabra");
@@ -588,8 +588,8 @@ namespace Library
             boss = false;
             name = "Camp";
             AmbientList.Add(new Barraca());
-            description = "Camp DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "You saw that?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Big Foot");
             monstersList.Add("Chupacabra");
         }
@@ -601,8 +601,8 @@ namespace Library
             oHero = null;
             boss = false;
             name = "Tent";
-            description = "Tent DESCRIPTION";
-			monstersList.Add("Gigant Spider");
+            description = "Are you sure you will open this tent?";
+			monstersList.Add("Giant Spider");
             monstersList.Add("Zombie");
             monstersList.Add("Zombie Bear");
             monstersList.Add("Big Mosquito");

@@ -652,7 +652,11 @@ namespace Menu
 				oStage.createGraph();
 				win = oStage.startStage();
                 if(!win)
-				    menuPrincipal.TryAgain();
+				{
+					menuPrincipal.TryAgain();
+					armazenador.RestoreState();
+				}
+				    
 			}
 			library.slowWrite("You got the SINGLETON scroll. The Singleton is a powerful pattern that lock an object to be unique on the context.", Constants.TEXT_SPEED2, true);
 			library.slowWrite("End of Chapter 1.", Constants.TEXT_SPEED2, true);

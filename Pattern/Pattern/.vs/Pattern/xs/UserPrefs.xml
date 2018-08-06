@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{CED499E6-A73E-46B6-BDC0-7D1904C67698}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Menu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Hero.cs">
     <Files>
-      <File FileName="Menu.cs" Line="633" Column="43" />
+      <File FileName="Menu.cs" Line="657" Column="33" />
       <File FileName="Tema.cs" Line="35" Column="16" />
       <File FileName="Stage.cs" Line="226" Column="57" />
       <File FileName="Ambient.cs" Line="33" Column="33" />

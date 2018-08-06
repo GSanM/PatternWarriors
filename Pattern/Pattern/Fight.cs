@@ -37,12 +37,12 @@ namespace Library
             {
                 if (EnemyList.Count < 1)
                 {
-                    Console.WriteLine("You Win!");
+					library.slowWrite("You Win!", Constants.TEXT_SPEED1, true);
                     return 0;
                 }
                 if (hero.getLife() < 1)
                 {
-                    Console.WriteLine("You Lose!");
+					library.slowWrite("You Lose!", Constants.TEXT_SPEED1, true);
                     return 1;
                 }
 
@@ -150,7 +150,7 @@ namespace Library
                     }
                 }
 
-                Console.Write("You have attacked your enemy " + aux.getName() + " with all your strenght! ");
+				library.slowWrite("You have attacked your enemy " + aux.getName() + " with all your strenght! ", Constants.TEXT_SPEED1, false);
 
                 if(aux.getMode().Equals("DEF")){
                     int dano = hero.getATK() - aux.getDEF();
@@ -159,17 +159,17 @@ namespace Library
                     {
                         if(aux.getLife() > 0)
                         {
-                            Console.WriteLine("He partially defends your attack and wins a beatiful scar.");
-                            Console.WriteLine("Damage given: " + dano);                        
+							library.slowWrite("He partially defends your attack and wins a beatiful scar.",Constants.TEXT_SPEED1,true);
+							library.slowWrite("Damage given: " + dano, Constants.TEXT_SPEED1, true);                        
                         }
                         else
                         {
-                            Console.WriteLine("He tries to defend himself, but doesn't resist and dies!");
+							library.slowWrite("He tries to defend himself, but doesn't resist and dies!", Constants.TEXT_SPEED1, true);
                         }
                     }
                     else
                     {
-                        Console.WriteLine("He completely defend your attack!!!");
+						library.slowWrite("He completely defend your attack!!!", Constants.TEXT_SPEED1, true);
                     }
                 }
                 else
@@ -178,23 +178,23 @@ namespace Library
 					{
 						
 						aux.receiveDamage(hero.getATK());
-						Console.WriteLine("You used the combo! SUPER DAMAGE!!!");
-						Console.WriteLine("Damage given: " + hero.getATK());
+						library.slowWrite("You used the combo! SUPER DAMAGE!!!", Constants.TEXT_SPEED1, true);
+						library.slowWrite("Damage given: " + hero.getATK(), Constants.TEXT_SPEED1, true);
 						hero.setCombo(0);
 					}
 					else
 					{
 						
 						aux.receiveDamage(hero.getATK());
-                        Console.WriteLine("Great attack!");
-						Console.WriteLine("Damage: " + hero.getATK());
+						library.slowWrite("Great attack!", Constants.TEXT_SPEED1, true);
+						library.slowWrite("Damage: " + hero.getATK(), Constants.TEXT_SPEED1, true);
 						hero.addCombo();
                     }
                 }
             }
             else
             {
-                Console.WriteLine("You decide to defend yourself this turn.");
+				library.slowWrite("You decide to defend yourself this turn.", Constants.TEXT_SPEED1, true);
             }
         }
 
@@ -205,11 +205,11 @@ namespace Library
             else if(Enemy.getMode().Equals("RUN"))
             {
                 Enemy.receiveDamage(Enemy.getLife());
-                Console.WriteLine("Monster " + Enemy.getID() + " ran from you");
+				library.slowWrite("Monster " + Enemy.getID() + " ran from you", Constants.TEXT_SPEED1, true);
             }
             else if (Enemy.getMode().Equals("ATK") ) 
             {
-				Console.Write("Monster " + Enemy.getID() + " threatens you with a powerful hit! ");
+				library.slowWrite("Monster " + Enemy.getID() + " threatens you with a powerful hit! ", Constants.TEXT_SPEED1, true);
 
                 if(hero.getMode().Equals("DEF"))
                 {
@@ -217,25 +217,25 @@ namespace Library
                     hero.receiveDamage(dano);
                     if (dano > 0)
                     {
-                        Console.WriteLine("You defend yourself, turning the attack not so effective.");
-                        Console.WriteLine("Damage taken: " + dano);                        
+						library.slowWrite("You defend yourself, turning the attack not so effective.", Constants.TEXT_SPEED1, true);
+						library.slowWrite("Damage taken: " + dano, Constants.TEXT_SPEED1, true);                        
                     }
                     else
                     {
-                        Console.WriteLine("You defend all the damage!!");
+						library.slowWrite("You defend all the damage!!", Constants.TEXT_SPEED1, true);
                     }
                 }
                 else
                 {
                     int dano = Enemy.getATK();
                     hero.receiveDamage(dano);
-					Console.WriteLine("The attack hit the bull's eye!!");
-                    Console.WriteLine("Damage taken: " + dano);                                            
+					library.slowWrite("The attack hit the bull's eye!!", Constants.TEXT_SPEED1, true);
+					library.slowWrite("Damage taken: " + dano, Constants.TEXT_SPEED1, true);                                            
                 }
             }
             else if(Enemy.getMode().Equals("DEF"))
             {
-                Console.WriteLine("Monster " + Enemy.getID() + " keeps on his guard");
+				library.slowWrite("Monster " + Enemy.getID() + " keeps on his guard", Constants.TEXT_SPEED1, true);
             }
         }
 

@@ -58,7 +58,8 @@ namespace Library
             //Console.WriteLine("                                                          -osssssssyssoo+++:`                       ");
 			Console.WriteLine ("");
 			library.slowWrite("Press Any Key to Continue ...", Constants.TEXT_SPEED2, true);
-            Console.Read();        
+            Console.Read(); 
+			Console.Clear();
         }
 
 		public static void printMage()
@@ -104,6 +105,7 @@ namespace Library
             Console.WriteLine("");
             library.slowWrite("Press Any Key to Continue ...", Constants.TEXT_SPEED2, true);            
             Console.Read();
+			Console.Clear();
         }
 
 		public static void printWarrior()
@@ -141,6 +143,7 @@ namespace Library
 			Console.WriteLine ("");
 			library.slowWrite("Press Any Key to Continue ...", Constants.TEXT_SPEED2, true);            
             Console.Read();
+			Console.Clear();
         }
     }
 }

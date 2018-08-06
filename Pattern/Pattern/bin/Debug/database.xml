@@ -22,4 +22,12 @@
     </Chars>
     <save />
   </User>
+  <User>
+    <username>Rafael</username>
+    <password>romeu</password>
+    <Chars>
+      <char class="Assassin" level="1">Rafael</char>
+    </Chars>
+    <save />
+  </User>
 </Users>

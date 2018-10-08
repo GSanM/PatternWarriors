@@ -1,0 +1,5 @@
+/home/rafael/GitHub/PatternWarriors/Pattern/Pattern/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/rafael/GitHub/PatternWarriors/Pattern/Pattern/bin/Debug/Pattern.exe.mdb
+/home/rafael/GitHub/PatternWarriors/Pattern/Pattern/bin/Debug/Pattern.exe
+/home/rafael/GitHub/PatternWarriors/Pattern/Pattern/obj/x86/Debug/Pattern.exe
+/home/rafael/GitHub/PatternWarriors/Pattern/Pattern/obj/x86/Debug/Pattern.exe.mdb

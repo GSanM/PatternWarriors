@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{CED499E6-A73E-46B6-BDC0-7D1904C67698}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Hero.cs">
+    <Files>
+      <File FileName="Menu.cs" Line="657" Column="33" />
+      <File FileName="Tema.cs" Line="35" Column="16" />
+      <File FileName="Stage.cs" Line="226" Column="57" />
+      <File FileName="Ambient.cs" Line="33" Column="33" />
+      <File FileName="Fight.cs" Line="322" Column="22" />
+      <File FileName="Hero.cs" Line="105" Column="30" />
+      <File FileName="Monsters.cs" Line="156" Column="23" />
+      <File FileName="heroes.cs" Line="142" Column="4" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Pattern PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

@@ -1,0 +1,10 @@
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.csproj.CoreCompileInputs.cache
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.csprojResolveAssemblyReference.cache
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/PatternWarriorsCodes.exe
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/PatternWarriorsCodes.pdb
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/Hero.dll
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/Monsters.dll
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/slowWrite.dll
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/bin/Debug/Table.dll
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.exe
+/home/gabriel/Documents/PatternWarrior/PatternWarriorsCodes/PatternWarriorsCodes/obj/x86/Debug/PatternWarriorsCodes.pdb

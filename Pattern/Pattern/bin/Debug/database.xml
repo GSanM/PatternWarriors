@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+  <User>
+    <username>gabriel</username>
+    <password>moraes</password>
+    <Chars>
+      <char class="Assassin" level="1">Gorh</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>thulio</username>
+    <password>martins</password>
+    <Chars />
+    <save />
+  </User>
+  <User>
+    <username>gabriel_</username>
+    <password>moraes</password>
+    <Chars>
+      <char class="Warrior" level="1">Robervaldo</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>Rafael</username>
+    <password>romeu</password>
+    <Chars>
+      <char class="Assassin" level="1">Rafael</char>
+    </Chars>
+    <save />
+  </User>
+  <User>
+    <username>gargamel</username>
+    <password>silvra</password>
+    <Chars>
+      <char class="Mage" level="1">Gargamel</char>
+    </Chars>
+    <save />
+  </User>
+</Users>

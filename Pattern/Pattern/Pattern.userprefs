@@ -1,0 +1,16 @@
+﻿<Properties StartupItem="Pattern.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Menu.cs">
+    <Files>
+      <File FileName="Menu.cs" Line="584" Column="46" />
+      <File FileName="Stage.cs" Line="245" Column="53" />
+      <File FileName="Hero.cs" Line="108" Column="4" />
+      <File FileName="Ambient.cs" Line="154" Column="17" />
+      <File FileName="Fight.cs" Line="331" Column="49" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

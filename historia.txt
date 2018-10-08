@@ -1,5 +1,0 @@
-O <nome do personagem> estava atrás de conhecimento, então ele decidiu sair em sua jornada para encontrar os pergaminhos dos padrões.
-Cada pergaminho possui a descrição de um padrão de projeto. Para obtê-los é necessário derrotar os monstros que guardam-no.
-
-Singleton <Tema: tal>
-- Você encontrou a dungeon Singleton, seu objetivo é derrotar os monstros para obter o pergaminho do padrão Singleton e absorver seus conhecimentos.
